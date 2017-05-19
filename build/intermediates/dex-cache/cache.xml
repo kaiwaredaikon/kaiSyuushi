@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        <dex dex="/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_477e2df62bc9273b11299bce22bca36e5f87ad52/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0751068445c2b97ae44cdef8ff6580792ff27873">
+        <dex dex="/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c0eb5ea17da72e05fe6c000a7eeb5d0e8afca1a9/classes.dex" />
+    </item>
+
+</items>

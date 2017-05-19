@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<declare-styleable name="MyTextStyle">
+		<attr name="text" format="string" />
+		<attr name="input" format="string" />
+	</declare-styleable>
+  	<declare-styleable name="CustomEditTextPreference">
+		<attr name="minLength" format="integer" />
+	</declare-styleable>
+
+  	<!-- プリファレンス 単位 -->
+  	<string-array name="entries_tani">
+        <item>100円</item>
+        <item>200円</item>
+        <item>500円</item>
+  	    <item>1,000円</item>
+    </string-array>
+    <string-array name="entryvalues_tani">
+        <item>100</item>
+        <item>200</item>
+        <item>500</item>
+        <item>1000</item>
+    </string-array>
+
+  	<!-- プリファレンス シークバー -->
+  	<string-array name="entries_seekbar">
+        <item>100円</item>
+        <item>200円</item>
+        <item>500円</item>
+  	    <item>1,000円</item>
+    </string-array>
+    <string-array name="entryvalues_seekbar">
+        <item>100</item>
+        <item>200</item>
+        <item>500</item>
+        <item>1000</item>
+    </string-array>
+
+  	<!-- プリファレンス シークバー 最大値  -->
+  	<string-array name="entries_seekbar_max">
+        <item>50,000円</item>
+        <item>100,000円</item>
+        <item>200,000円</item>
+        <item>300,000円</item>
+        <item>500,000円</item>
+    </string-array>
+    <string-array name="entryvalues_seekbar_max">
+        <item>50000</item>
+        <item>100000</item>
+        <item>200000</item>
+        <item>300000</item>
+        <item>500000</item>
+    </string-array>
+
+    <!-- 保存先  -->
+  	<!-- プリファレンス シークバー 最大値  -->
+  	<string-array name="entries_destination">
+        <item>内部ストレージ</item>
+        <item>SDカード</item>
+    </string-array>
+    <string-array name="entryvalues_destination">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+</resources>

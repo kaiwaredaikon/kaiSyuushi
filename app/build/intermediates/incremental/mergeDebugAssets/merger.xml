@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="output"><source path="/Users/kaiware/.android/build-cache/a0c294e387e46f7506845851e13de9060a7126d4/output/assets"/></dataSet><dataSet config="main"><source path="/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/assets"/><source path="/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/generated/assets/shaders/debug"/></dataSet><dataSet config="debug"><source path="/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/debug/assets"/></dataSet></merger>

@@ -1,0 +1,7 @@
+#Wed May 17 03:41:28 JST 2017
+base.0=/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_477e2df62bc9273b11299bce22bca36e5f87ad52
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c0eb5ea17da72e05fe6c000a7eeb5d0e8afca1a9/classes.dex
+base.1=/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c0eb5ea17da72e05fe6c000a7eeb5d0e8afca1a9
+file.0=/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_477e2df62bc9273b11299bce22bca36e5f87ad52/classes.dex

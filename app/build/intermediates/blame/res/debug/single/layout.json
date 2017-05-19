@@ -1,0 +1,122 @@
+[
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/option_listview.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/option_listview.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/loading_progress.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/loading_progress.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/row_preference_category.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/row_preference_category.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/include_header_list_view.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/include_header_list_view.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/detailed_input_list.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/detailed_input_list.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/include_header_main.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/include_header_main.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/time_picker_dialog.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/time_picker_dialog.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/row_custom_preference.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/row_custom_preference.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/number_picker.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/number_picker.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/draw_data_list.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/draw_data_list.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/detailed_listview.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/detailed_listview.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/add_dialog_tenpo.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/add_dialog_tenpo.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/include_divider_vertical.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/include_divider_vertical.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/hour_minute_pair.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/hour_minute_pair.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/listviewactivity.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/listviewactivity.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/layout_webview.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/layout_webview.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/input_list.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/input_list.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/dialog.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/dialog.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/include_header_add.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/include_header_add.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/year_month_pair.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/year_month_pair.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/add_dialog_event.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/add_dialog_event.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/add_list_activity.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/add_list_activity.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/drawdataactivity.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/drawdataactivity.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/pref_edittext.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/pref_edittext.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/data_prefirence.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/data_prefirence.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/pref_dialog.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/pref_dialog.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/include_header_draw_data.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/include_header_draw_data.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/add_dialog_kisyu.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/add_dialog_kisyu.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/list_view_dialog_textview.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/list_view_dialog_textview.xml"
+    }
+]
