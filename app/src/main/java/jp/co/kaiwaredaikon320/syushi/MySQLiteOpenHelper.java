@@ -26,6 +26,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
     private Context context;
 
+    public static final String ID                  = "_id"; 			// ID
 	public static final String DATA                = "data";			// 日付
 	public static final String TENPO               = "tenpo";		    // 店舗
     public static final String EXCHANGE_BALL       = "exchange_ball";	// 交換率 玉
@@ -203,7 +204,6 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     // コンストラクタで指定したバージョンと、参照先のDBのバージョンに差異があるときにコールされる
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// TODO 自動生成されたメソッド・スタブ
 	}
 
 
@@ -249,7 +249,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
 
     /**
-     *  第二引数で引っかかったものの、トータルを返す
+     *  検索ワードでHitしたものの総投資を取得する
      *
      * @param database 参照DB
      * @param word 検索ワード
@@ -307,7 +307,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
     /**
-     *  第二引数で引っかかったものの、トータルを返す
+     *  検索ワードでHitしたものの総回収を取得する
      *
      * @param database 参照DB
      * @param word 検索ワード
@@ -364,10 +364,17 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
 
+
+
+
 	/**
+	 * 指定された日付にデータが存在するかチェックする
 	 *
+	 * @param database　データベース
 	 * @param word　検索ワード(日付)
-	 * @return 指定したワードでHitした投資のtotal額
+	 * @param column　カラム
+	 *
+	 * @return データが存在する場合→true 存在しない→false
 	 */
 	public boolean getDayDrawFlg( SQLiteDatabase database, String word, String column ){
 

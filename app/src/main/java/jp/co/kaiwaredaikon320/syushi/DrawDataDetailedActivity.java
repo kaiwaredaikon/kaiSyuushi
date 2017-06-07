@@ -1,5 +1,6 @@
 package jp.co.kaiwaredaikon320.syushi;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -351,12 +352,22 @@ public class DrawDataDetailedActivity extends Activity{
 		System.out.println("現在の項目数は " + mArrayList.size() + " です");
 
         // SQLite
-        constantsCursor = syushiDatabase.rawQuery( "SELECT data, investment, recovery, kisyu "+
-        										   "FROM constants " +
-        										   "WHERE data like '%" + word + "%' "+
-        										   "ORDER BY data",
+        constantsCursor = syushiDatabase.rawQuery( "SELECT "+
+													MySQLiteOpenHelper.DATA + "," +
+													MySQLiteOpenHelper.KISYU + "," +
+													MySQLiteOpenHelper.INVESTMENT + "," +
+													MySQLiteOpenHelper.INVESTMENT_TYPE + "," +
+													MySQLiteOpenHelper.RECOVERY + "," +
+													MySQLiteOpenHelper.RECOVERY_TYPE + "," +
+													MySQLiteOpenHelper.EXCHANGE_BALL + "," +
+													MySQLiteOpenHelper.EXCHANGE_MEDAL +
+        										   " FROM constants" +
+        										   " WHERE data like '%" + word + "%'"+
+        										   " ORDER BY data",
         										   null );
+
         Trace.d("現在の項目数は " + mArrayList.size() + " です");
+
         // データを取得
         // カーソルを一番最初に戻す。
 		if( constantsCursor.moveToFirst( ) ){
@@ -366,13 +377,47 @@ public class DrawDataDetailedActivity extends Activity{
 				Trace.d("現在の項目数は " + mArrayList.size() + " です");
 				//　データベースからデータを取得する
 				String kisyu = constantsCursor.getString( constantsCursor.getColumnIndex( "kisyu" ) );
-				int investment = constantsCursor.getInt( constantsCursor.getColumnIndex( "investment" ) );
-				int recovery = constantsCursor.getInt( constantsCursor.getColumnIndex( "recovery" ) );
-				int total = recovery - investment;
+
+				//　交換率
+				double exchangeBall = constantsCursor.getDouble(constantsCursor.getColumnIndex(MySQLiteOpenHelper.EXCHANGE_BALL));
+				double exchangeSlot = constantsCursor.getDouble(constantsCursor.getColumnIndex(MySQLiteOpenHelper.EXCHANGE_MEDAL));
+
+				// 投資
+				int invPtn = constantsCursor.getInt(constantsCursor.getColumnIndex(MySQLiteOpenHelper.INVESTMENT_TYPE));
+				double calcInv = constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+
+				// パチ
+				if( invPtn == 1 ){
+					calcInv = exchangeBall*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+				}
+				// スロ
+				if( invPtn == 2 ){
+					calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+				}
+
+				//　回収計算
+				// データの取得
+				int revPtn = constantsCursor.getInt(constantsCursor.getColumnIndex(MySQLiteOpenHelper.RECOVERY_TYPE));
+				double calcRev = constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );;
+
+				// パチ
+				if( revPtn == 1 ){
+					calcRev = exchangeBall*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+				}
+				// スロ
+				if( revPtn == 2 ){
+					calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+				}
 
 				Trace.d("現在の項目数は " + mArrayList.size() + " です");
+
 				//　リストに登録
-				mArrayList.add( new ListViewItem( kisyu, investment, recovery, total, word ) );
+				mArrayList.add( new ListViewItem( kisyu,
+						AppSetting.getBigDecimalInt(calcInv,0, BigDecimal.ROUND_UP),
+						AppSetting.getBigDecimalInt(calcRev,0, BigDecimal.ROUND_UP),
+						((AppSetting.getBigDecimalInt(calcRev,0, BigDecimal.ROUND_UP))-(AppSetting.getBigDecimalInt(calcInv,0, BigDecimal.ROUND_UP))),
+						word ) );
+
 				Trace.d("現在の項目数は " + mArrayList.size() + " です");
 			}while( constantsCursor.moveToNext( ) );
 		}
@@ -392,9 +437,8 @@ public class DrawDataDetailedActivity extends Activity{
      */
     private void makeMonthListView( String word ){
 
-		int investmentTmp = 0;
-		int recoveryTmp = 0;
-		int totalTmp = 0;
+		int totalInv = 0;
+		int totalRev = 0;
 
     	//　リストの初期化
 		mArrayList.clear();
@@ -428,15 +472,21 @@ public class DrawDataDetailedActivity extends Activity{
         // 機種ごとに収支を取得する
         for( int i =0; i < listStr.size(); i++ ){
 
-    		investmentTmp = 0;
-    		recoveryTmp = 0;
-    		totalTmp = 0;
+			totalInv = 0;
+			totalRev = 0;
 
             // SQLite
-            constantsCursor = syushiDatabase.rawQuery( "SELECT data, investment, recovery "+
-            										   "FROM constants " +
-            										   "WHERE data like '%" + listStr.get(i) + "%' "+
-            										   "ORDER BY data",
+            constantsCursor = syushiDatabase.rawQuery( "SELECT "+
+														MySQLiteOpenHelper.DATA + "," +
+														MySQLiteOpenHelper.INVESTMENT + "," +
+														MySQLiteOpenHelper.INVESTMENT_TYPE + "," +
+														MySQLiteOpenHelper.RECOVERY + "," +
+														MySQLiteOpenHelper.RECOVERY_TYPE + "," +
+														MySQLiteOpenHelper.EXCHANGE_BALL + "," +
+														MySQLiteOpenHelper.EXCHANGE_MEDAL +
+            										   " FROM constants" +
+            										   " WHERE data like '%" + listStr.get(i) + "%'"+
+            										   " ORDER BY data",
             										   null );
 
             // データを取得
@@ -444,20 +494,49 @@ public class DrawDataDetailedActivity extends Activity{
     		if( constantsCursor.moveToFirst( ) ){
 
     			do{
-					//　データベースからデータを取得する
-					int investment = constantsCursor.getInt( constantsCursor.getColumnIndex( "investment" ) );
-					int recovery = constantsCursor.getInt( constantsCursor.getColumnIndex( "recovery" ) );
-					int total = recovery - investment;
+					//　交換率
+					double exchangeBall = constantsCursor.getDouble(constantsCursor.getColumnIndex(MySQLiteOpenHelper.EXCHANGE_BALL));
+					double exchangeSlot = constantsCursor.getDouble(constantsCursor.getColumnIndex(MySQLiteOpenHelper.EXCHANGE_MEDAL));
 
-				// 収支
-					investmentTmp += investment;
-					recoveryTmp   += recovery;
-					totalTmp      += total;
+					// 投資
+					int invPtn = constantsCursor.getInt(constantsCursor.getColumnIndex(MySQLiteOpenHelper.INVESTMENT_TYPE));
+					double calcInv = constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+
+					// パチ
+					if( invPtn == 1 ){
+						calcInv = exchangeBall*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+					}
+					// スロ
+					if( invPtn == 2 ){
+						calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+					}
+
+					//　トータル投資
+					totalInv += AppSetting.getBigDecimalInt(calcInv,0, BigDecimal.ROUND_UP);
+
+
+					//　回収計算
+					// データの取得
+					int revPtn = constantsCursor.getInt(constantsCursor.getColumnIndex(MySQLiteOpenHelper.RECOVERY_TYPE));
+					double calcRev = constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );;
+
+					// パチ
+					if( revPtn == 1 ){
+						calcRev = exchangeBall*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+					}
+					// スロ
+					if( revPtn == 2 ){
+						calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+					}
+
+					//　トータル
+					totalRev += AppSetting.getBigDecimalInt(calcRev,0, BigDecimal.ROUND_UP);
 
     			}while( constantsCursor.moveToNext( ) );
     		}
 			//　リストに追加
-			mArrayList.add( new ListViewItem( listStr.get( i ).substring(4, 6)+"月"+listStr.get( i ).substring(6, 8)+"日", investmentTmp, recoveryTmp, totalTmp, listStr.get(i) ) );
+			mArrayList.add( new ListViewItem( listStr.get( i ).substring(4, 6)+"月"+listStr.get( i ).substring(6, 8)+"日",
+					totalInv, totalRev, (totalRev-totalInv), listStr.get(i) ) );
         }
 
         constantsCursor.close();
@@ -476,9 +555,8 @@ public class DrawDataDetailedActivity extends Activity{
      */
     private void makeYearListView( String word ){
 
-		int investmentTmp = 0;
-		int recoveryTmp = 0;
-		int totalTmp = 0;
+		int totalInv = 0;
+		int totalRev = 0;
 
     	//　リストの初期化
 		mArrayList.clear();
@@ -514,15 +592,21 @@ public class DrawDataDetailedActivity extends Activity{
         // 機種ごとに収支を取得する
         for( int i =0; i < listStr.size(); i++ ){
 
-    		investmentTmp = 0;
-    		recoveryTmp = 0;
-    		totalTmp = 0;
+			totalInv = 0;
+			totalRev = 0;
 
             // SQLite
-            constantsCursor = syushiDatabase.rawQuery( "SELECT data, investment, recovery "+
-            										   "FROM constants " +
-            										   "WHERE data like '%" + listStr.get(i) + "%' "+
-            										   "ORDER BY data",
+            constantsCursor = syushiDatabase.rawQuery( "SELECT "+
+														MySQLiteOpenHelper.DATA + "," +
+														MySQLiteOpenHelper.INVESTMENT + "," +
+														MySQLiteOpenHelper.INVESTMENT_TYPE + "," +
+														MySQLiteOpenHelper.RECOVERY + "," +
+														MySQLiteOpenHelper.RECOVERY_TYPE + "," +
+														MySQLiteOpenHelper.EXCHANGE_BALL + "," +
+														MySQLiteOpenHelper.EXCHANGE_MEDAL +
+            										   " FROM constants" +
+            										   " WHERE data like '%" + listStr.get(i) + "%'"+
+            										   " ORDER BY data",
             										   null );
 
             // データを取得
@@ -530,20 +614,49 @@ public class DrawDataDetailedActivity extends Activity{
     		if( constantsCursor.moveToFirst( ) ){
 
     			do{
-					//　データベースからデータを取得する
-					int investment = constantsCursor.getInt( constantsCursor.getColumnIndex( "investment" ) );
-					int recovery = constantsCursor.getInt( constantsCursor.getColumnIndex( "recovery" ) );
-					int total = recovery - investment;
+					//　交換率
+					double exchangeBall = constantsCursor.getDouble(constantsCursor.getColumnIndex(MySQLiteOpenHelper.EXCHANGE_BALL));
+					double exchangeSlot = constantsCursor.getDouble(constantsCursor.getColumnIndex(MySQLiteOpenHelper.EXCHANGE_MEDAL));
 
-				// 収支
-					investmentTmp += investment;
-					recoveryTmp   += recovery;
-					totalTmp      += total;
+					// 投資
+					int invPtn = constantsCursor.getInt(constantsCursor.getColumnIndex(MySQLiteOpenHelper.INVESTMENT_TYPE));
+					double calcInv = constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+
+					// パチ
+					if( invPtn == 1 ){
+						calcInv = exchangeBall*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+					}
+					// スロ
+					if( invPtn == 2 ){
+						calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+					}
+
+					//　トータル投資
+					totalInv += AppSetting.getBigDecimalInt(calcInv,0, BigDecimal.ROUND_UP);
+
+
+					//　回収計算
+					// データの取得
+					int revPtn = constantsCursor.getInt(constantsCursor.getColumnIndex(MySQLiteOpenHelper.RECOVERY_TYPE));
+					double calcRev = constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );;
+
+					// パチ
+					if( revPtn == 1 ){
+						calcRev = exchangeBall*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+					}
+					// スロ
+					if( revPtn == 2 ){
+						calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+					}
+
+					//　トータル
+					totalRev += AppSetting.getBigDecimalInt(calcRev,0, BigDecimal.ROUND_UP);
 
     			}while( constantsCursor.moveToNext( ) );
     		}
 			//　リストに追加
-			mArrayList.add( new ListViewItem( listStr.get( i ).substring(4, 6)+"月", investmentTmp, recoveryTmp, totalTmp, listStr.get(i) ) );
+			mArrayList.add( new ListViewItem( listStr.get( i ).substring(4, 6)+"月",
+							totalInv, totalRev,(totalRev-totalInv), listStr.get(i) ) );
         }
 		// リストの再描画
 //		mListView.invalidateViews();
@@ -561,9 +674,8 @@ public class DrawDataDetailedActivity extends Activity{
      */
     private void makeTotalListView( ){
 
-		int investmentTmp = 0;
-		int recoveryTmp = 0;
-		int totalTmp = 0;
+		int totalInv = 0;
+		int totalRev = 0;
 
 		// リストの初期化
 		mArrayList.clear();
@@ -597,15 +709,21 @@ public class DrawDataDetailedActivity extends Activity{
         // 機種ごとに収支を取得する
         for( int i =0; i < listStr.size(); i++ ){
 
-    		investmentTmp = 0;
-    		recoveryTmp = 0;
-    		totalTmp = 0;
+			totalInv = 0;
+			totalRev = 0;
 
             // SQLite
-            constantsCursor = syushiDatabase.rawQuery( "SELECT data, investment, recovery "+
-            										   "FROM constants " +
-            										   "WHERE data like '%" + listStr.get(i) + "%' "+
-            										   "ORDER BY data",
+            constantsCursor = syushiDatabase.rawQuery( "SELECT "+
+														MySQLiteOpenHelper.DATA + "," +
+														MySQLiteOpenHelper.INVESTMENT + "," +
+														MySQLiteOpenHelper.INVESTMENT_TYPE + "," +
+														MySQLiteOpenHelper.RECOVERY + "," +
+														MySQLiteOpenHelper.RECOVERY_TYPE + "," +
+														MySQLiteOpenHelper.EXCHANGE_BALL + "," +
+														MySQLiteOpenHelper.EXCHANGE_MEDAL +
+            										   " FROM constants" +
+            										   " WHERE data like '%" + listStr.get(i) + "%'"+
+            										   " ORDER BY data",
             										   null );
 
             // データを取得
@@ -617,20 +735,49 @@ public class DrawDataDetailedActivity extends Activity{
                 }
 
     			do{
-					//　データベースからデータを取得する
-					int investment = constantsCursor.getInt( constantsCursor.getColumnIndex( "investment" ) );
-					int recovery = constantsCursor.getInt( constantsCursor.getColumnIndex( "recovery" ) );
-					int total = recovery - investment;
+					//　交換率
+					double exchangeBall = constantsCursor.getDouble(constantsCursor.getColumnIndex(MySQLiteOpenHelper.EXCHANGE_BALL));
+					double exchangeSlot = constantsCursor.getDouble(constantsCursor.getColumnIndex(MySQLiteOpenHelper.EXCHANGE_MEDAL));
 
-				// 収支
-					investmentTmp += investment;
-					recoveryTmp   += recovery;
-					totalTmp      += total;
+					// 投資
+					int invPtn = constantsCursor.getInt(constantsCursor.getColumnIndex(MySQLiteOpenHelper.INVESTMENT_TYPE));
+					double calcInv = constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+
+					// パチ
+					if( invPtn == 1 ){
+						calcInv = exchangeBall*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+					}
+					// スロ
+					if( invPtn == 2 ){
+						calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+					}
+
+					//　トータル投資
+					totalInv += AppSetting.getBigDecimalInt(calcInv,0, BigDecimal.ROUND_UP);
+
+
+					//　回収計算
+					// データの取得
+					int revPtn = constantsCursor.getInt(constantsCursor.getColumnIndex(MySQLiteOpenHelper.RECOVERY_TYPE));
+					double calcRev = constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );;
+
+					// パチ
+					if( revPtn == 1 ){
+						calcRev = exchangeBall*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+					}
+					// スロ
+					if( revPtn == 2 ){
+						calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+					}
+
+					//　トータル
+					totalRev += AppSetting.getBigDecimalInt(calcRev,0, BigDecimal.ROUND_UP);
 
     			}while( constantsCursor.moveToNext( ) );
     		}
 			//　リストに追加
-			mArrayList.add( new ListViewItem( listStr.get( i ).substring(0, 4)+"年", investmentTmp, recoveryTmp, totalTmp, listStr.get(i) ) );
+			mArrayList.add( new ListViewItem( listStr.get( i ).substring(0, 4)+"年",
+					totalInv, totalRev, (totalRev-totalInv), listStr.get(i) ) );
         }
 		// リストの再描画
 //		mListView.invalidateViews();

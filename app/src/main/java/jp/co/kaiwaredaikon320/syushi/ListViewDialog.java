@@ -230,10 +230,10 @@ public class ListViewDialog extends Activity{
         dialog.show();
 
         // listViewのサイズを変更する
-        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
-        lp.width  = width;
-        lp.height = height;
-        dialog.getWindow().setAttributes(lp);
+//        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+//        lp.width  = width;
+//        lp.height = height;
+//        dialog.getWindow().setAttributes(lp);
     }
 
 	// ListViewで使用するItemClass

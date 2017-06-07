@@ -664,6 +664,17 @@ public class MainActivity extends Activity implements GestureDetector.OnGestureL
 
 
     /**
+     * 月日移動ダイアログを表示させる
+     * @param view
+     */
+    public void onClickLinearHeaderYM( View view ){
+        Trace.d( "onClickLinearHeaderYM" );
+        calView.setDataPickerDialog();
+    }
+
+
+
+    /**
      * 来月に移動
      *
      * @param view

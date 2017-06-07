@@ -86,8 +86,8 @@
                         android:text="@string/str_com_investment"
                         android:textColor="#000000"
                         android:textSize="16dp"
-                        android:singleLine="true"
-                        android:ellipsize="end"/>
+						android:maxLines="1"
+                        android:ellipsize="middle"/>
                     <TextView
                         android:id="@+id/textViewMonth3_1"
                         android:layout_width="match_parent"
@@ -99,8 +99,8 @@
                         android:text="@string/str_com_recovery"
                         android:textColor="#000000"
                         android:textSize="16dp"
-                        android:singleLine="true"
-                        android:ellipsize="end"/>
+						android:maxLines="1"
+                        android:ellipsize="middle"/>
                     <TextView
                         android:id="@+id/textViewMonth4_1"
                         android:layout_width="match_parent"
@@ -112,8 +112,8 @@
                         android:text="@string/str_com_total"
                         android:textColor="#000000"
                         android:textSize="16dp"
-                        android:singleLine="true"
-                        android:ellipsize="end"/>
+						android:maxLines="1"
+                        android:ellipsize="middle"/>
 			</LinearLayout>
 
 			<LinearLayout
@@ -132,8 +132,8 @@
 					android:text="@string/zero_calendar_view"
 					android:textColor="#000000"
 					android:textSize="16dp"
-					android:singleLine="true"
-					android:ellipsize="end"/>
+					android:maxLines="1"
+					android:ellipsize="middle"/>
 				<TextView
 					android:id="@+id/textViewMonth3_2"
 					android:layout_width="match_parent"
@@ -145,8 +145,8 @@
 					android:text="@string/zero_calendar_view"
 					android:textColor="#000000"
 					android:textSize="16dp"
-					android:singleLine="true"
-					android:ellipsize="end"/>
+					android:maxLines="1"
+					android:ellipsize="middle"/>
 				<TextView
 					android:id="@+id/textViewMonth4_2"
 					android:layout_width="match_parent"
@@ -158,8 +158,8 @@
 					android:text="@string/zero_calendar_view"
 					android:textColor="#000000"
 					android:textSize="16dp"
-					android:singleLine="true"
-					android:ellipsize="end"/>
+					android:maxLines="1"
+					android:ellipsize="middle"/>
 			</LinearLayout>
 		</LinearLayout>
 
@@ -186,8 +186,8 @@
                     android:text="@string/str_com_investment"
                     android:textColor="#000000"
                     android:textSize="16dp"
-                    android:singleLine="true"
-                    android:ellipsize="end"/>
+					android:maxLines="1"
+                    android:ellipsize="middle"/>
                 <TextView
                     android:id="@+id/textViewYear3_1"
                     android:layout_width="match_parent"
@@ -199,8 +199,8 @@
                     android:text="@string/str_com_recovery"
                     android:textColor="#000000"
                     android:textSize="16dp"
-                    android:singleLine="true"
-                    android:ellipsize="end"/>
+					android:maxLines="1"
+                    android:ellipsize="middle"/>
                 <TextView
                     android:id="@+id/textViewYear4_1"
                     android:layout_width="match_parent"
@@ -212,8 +212,8 @@
                     android:text="@string/str_com_total"
                     android:textColor="#000000"
                     android:textSize="16dp"
-                    android:singleLine="true"
-                    android:ellipsize="end"/>
+					android:maxLines="1"
+                    android:ellipsize="middle"/>
             </LinearLayout>
 
 			<LinearLayout
@@ -232,8 +232,8 @@
 					android:text="@string/zero_calendar_view"
 					android:textColor="#000000"
 					android:textSize="16dp"
-					android:singleLine="true"
-					android:ellipsize="end"/>
+					android:maxLines="1"
+					android:ellipsize="middle"/>
 				<TextView
 					android:id="@+id/textViewYear3_2"
 					android:layout_width="match_parent"
@@ -245,8 +245,8 @@
 					android:text="@string/zero_calendar_view"
 					android:textColor="#000000"
 					android:textSize="16dp"
-					android:singleLine="true"
-					android:ellipsize="end"/>
+					android:maxLines="1"
+					android:ellipsize="middle"/>
 				<TextView
 					android:id="@+id/textViewYear4_2"
 					android:layout_width="match_parent"
@@ -258,8 +258,8 @@
 					android:text="@string/zero_calendar_view"
 					android:textColor="#000000"
 					android:textSize="16dp"
-					android:singleLine="true"
-					android:ellipsize="end"/>
+					android:maxLines="1"
+					android:ellipsize="middle"/>
 			</LinearLayout>
 		</LinearLayout>
 	</LinearLayout>

@@ -117,7 +117,10 @@
                     android:hint="@string/str_tenpo_hint"
                     android:onClick="onClickAddTenpo"
                     android:textSize="@dimen/add_text_size"
-                    android:gravity="center"/>
+                    android:scrollHorizontally="true"
+                    android:ellipsize="middle"
+                    android:gravity="center"
+                    android:maxLines="1" />
 
                 <!--<TextView-->
                     <!--android:id="@+id/add_edit_tenpo"-->
@@ -292,7 +295,11 @@
                     android:hint="@string/str_kisyu_hint"
                     android:onClick="onClickAddKisyu"
                     android:textSize="@dimen/add_text_size"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:scrollHorizontally="true"
+                    android:ellipsize="middle"
+                    android:maxLines="1" />
+
 
                 <!--<TextView-->
                 <!--android:id="@+id/add_edit_kisyu"-->
@@ -368,7 +375,11 @@
                     android:hint="@string/str_add_list_event_hint"
                     android:onClick="onClickAddCommon"
                     android:textSize="@dimen/add_text_size"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:scrollHorizontally="true"
+                    android:ellipsize="middle"
+                    android:maxLines="1" />
+
 
                 <!--<EditText-->
                 <!--android:id="@+id/add_edit_event"-->

@@ -3,7 +3,6 @@ package jp.co.kaiwaredaikon320.syushi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -20,7 +19,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 
-public class ListViewActivity extends Activity{
+public class ListViewActivity extends Activity {
 
     // メニュー識別用のID
     private static final int MENU_ADD = Menu.FIRST;
@@ -103,18 +102,18 @@ public class ListViewActivity extends Activity{
 	}
 */
 
-	@Override
+    @Override
     public void onCreate(Bundle savedInstanceState) {
 
-      Trace.d( "onCreate Start " );
+        Trace.d("onCreate Start ");
 
         super.onCreate(savedInstanceState);
 
-        Intent intent = getIntent( );
+        Intent intent = getIntent();
 
         //　選択された日付を代入
-        calData  = intent.getStringExtra( "dddd" );
-        titleStr = intent.getStringExtra( "dsds" );
+        calData = intent.getStringExtra("dddd"); // データベースのサーチワード　例)19830612
+        titleStr = intent.getStringExtra("dsds"); //　○年○月○日
 
         firstFlg = false;
 
@@ -127,82 +126,82 @@ public class ListViewActivity extends Activity{
         // Upアイコンの表示
 //        getActionBar().setDisplayHomeAsUpEnabled (true);
 
-		setContentView(R.layout.listviewactivity);
+        setContentView(R.layout.listviewactivity);
 
-        TextView titleName = (TextView)findViewById(R.id.header_text_list_view);
+        TextView titleName = (TextView) findViewById(R.id.header_text_list_view);
 
         titleName.setText(titleStr);
 
-		// レイアウト調整
+        // レイアウト調整
 //		layout();
 
-    	// Viewを取得
-		mListView = (ListView)this.findViewById(android.R.id.list);
+        // Viewを取得
+        mListView = (ListView) this.findViewById(android.R.id.list);
 
         // コンテキストメニューを表示するViewを登録する
         //Viewに追加する場合、registerForContextMenu(View);が必要
-        registerForContextMenu( mListView );
+        registerForContextMenu(mListView);
 
-		//　引き継いできた日付をアクションバーに代入
+        //　引き継いできた日付をアクションバーに代入
 //		setTitle( "" + titleStr );
 
-		// タップで収支変更
-		mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Trace.d( "setOnItemClickListener pos = " + position );
-				firstFlg = false;
-				//データの引き継ぎ
-				intentConfigCommonProcess( false, position );
-			}
-		} );
+        // タップで収支変更
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Trace.d("setOnItemClickListener pos = " + position);
+                firstFlg = false;
+                //データの引き継ぎ
+                intentConfigCommonProcess(false, position);
+            }
+        });
 
 
-		//	項目長押しでデータの削除
-        mListView.setOnItemLongClickListener( new AdapterView.OnItemLongClickListener() {
+        //	項目長押しでデータの削除
+        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
-			@Override
-			public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 
-		        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder( view.getContext() );
-		        // アラートダイアログのタイトルを設定します
-		        alertDialogBuilder.setTitle("削除");
-		        // アラートダイアログのメッセージを設定します
-		        alertDialogBuilder.setMessage("データを削除しますか？");
-		        // アラートダイアログのはいボタンがクリックされた時に呼び出されるコールバックリスナーを登録します
-		        alertDialogBuilder.setPositiveButton("はい",
-		                new DialogInterface.OnClickListener() {
-		                    @Override
-		                    public void onClick(DialogInterface dialog, int which) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(view.getContext());
+                // アラートダイアログのタイトルを設定します
+                alertDialogBuilder.setTitle("削除");
+                // アラートダイアログのメッセージを設定します
+                alertDialogBuilder.setMessage("データを削除しますか？");
+                // アラートダイアログのはいボタンがクリックされた時に呼び出されるコールバックリスナーを登録します
+                alertDialogBuilder.setPositiveButton("はい",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
-		        				Trace.d( "setOnItemLongClickListener pos:" + position + " id:" + mArrayList.get( position ).getID() );
+                                Trace.d("setOnItemLongClickListener pos:" + position + " id:" + mArrayList.get(position).getID());
 
-		                    	// データベースから指定されたIDを削除する
-		                    	syushiDatabase.delete( "constants", "_id = " + mArrayList.get( position ).getID(), null);
-		            	    	//　リストからアラームを削除する
-		                    	mArrayList.remove( position );
+                                // データベースから指定されたIDを削除する
+                                syushiDatabase.delete("constants", "_id = " + mArrayList.get(position).getID(), null);
+                                //　リストからアラームを削除する
+                                mArrayList.remove(position);
 
-		        				// リストの再描画
-		        				mListView.invalidateViews();
-		                    }
-		                });
+                                // リストの再描画
+                                mListView.invalidateViews();
+                            }
+                        });
 
-		        // アラートダイアログのいいえがクリックされた時に呼び出されるコールバックリスナーを登録します
-		        alertDialogBuilder.setNegativeButton("いいえ",
-		                new DialogInterface.OnClickListener() {
-		                    @Override
-		                    public void onClick(DialogInterface dialog, int which) {
-		                    }
-		                });
+                // アラートダイアログのいいえがクリックされた時に呼び出されるコールバックリスナーを登録します
+                alertDialogBuilder.setNegativeButton("いいえ",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
 
-		        // アラートダイアログのキャンセルが可能かどうかの設定
-		        alertDialogBuilder.setCancelable(true);
-		        AlertDialog alertDialog = alertDialogBuilder.create();
-		        // アラートダイアログを表示します
-		        alertDialog.show();
+                // アラートダイアログのキャンセルが可能かどうかの設定
+                alertDialogBuilder.setCancelable(true);
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                // アラートダイアログを表示します
+                alertDialog.show();
 
-				return true;
-			}
+                return true;
+            }
         });
 
 
@@ -218,167 +217,80 @@ public class ListViewActivity extends Activity{
 
         // ListViewにアダプタを設定
         ListViewAdapter adapter = new ListViewAdapter(
-			this,
-			R.layout.input_list, 	// 1行分のレイアウトファイル
-			0,          	        // 上記レイアウト内のテキスト表示箇所のId(※未使用)
-			mArrayList              // 表示対象のデータ
-			);
+                this,
+                R.layout.input_list,    // 1行分のレイアウトファイル
+                0,                    // 上記レイアウト内のテキスト表示箇所のId(※未使用)
+                mArrayList              // 表示対象のデータ
+        );
 
         mListView.setAdapter(adapter);
 
-        try{
-			// どの項目（列）のデータを検索するか」を指定する：SELECT
-			//「どの表から検索するか」を指定する：FROM
-			//「どのような条件で行を検索するか」を指定する：WHERE
-			// 指定した要素でソート？：ORDER BY
-	        //
-			// dataを　constantsテーブルから取得し、dataの値でソートする？
-	        // SQLite
-	        syushiDatabase = ( new MySQLiteOpenHelper( getApplicationContext() ) ).getWritableDatabase( );
-	/*
-	        constantsCursor = syushiDatabase.rawQuery( "SELECT _id, data, tenpo, kisyu, investment, recovery "+
-	        										   "FROM constants " +
-														"WHERE data like '%" + calData + "%' "+
-	        										   "ORDER BY _id",
-	        										   null );
-	*/
-//          ORDER BY → ソート
-//          WHERE data like→検索
-	        constantsCursor = syushiDatabase.rawQuery(
-                    "SELECT _id," +
-                            MySQLiteOpenHelper.DATA + "," +
-                            MySQLiteOpenHelper.TENPO + "," +
-                            MySQLiteOpenHelper.EXCHANGE_BALL + "," +
-                            MySQLiteOpenHelper.EXCHANGE_MEDAL + "," +
-//                            MySQLiteOpenHelper.NUMBER + "," +
-                            MySQLiteOpenHelper.KISYU + "," +
-//                            MySQLiteOpenHelper.TYPE + "," +
-//                            MySQLiteOpenHelper.EVENT + "," +
-                            MySQLiteOpenHelper.INVESTMENT + "," +
-                            MySQLiteOpenHelper.INVESTMENT_TYPE + "," +
-                            MySQLiteOpenHelper.RECOVERY + "," +
-                            MySQLiteOpenHelper.RECOVERY_TYPE + "," +
-//                            MySQLiteOpenHelper.START_TIME + "," +
-//                            MySQLiteOpenHelper.END_TIME + "," +
-                            MySQLiteOpenHelper.MEMO +
-                            " FROM constants" +
-                            " WHERE data like '%" + calData + "%'"+
-                            " ORDER BY _id",
-                    null );
+        // LitViewを作成
+        firstFlg = initListViewItem( calData );
 
-            // データを取得
-            // カーソルを一番最初に戻す。
-            if( constantsCursor.moveToFirst( ) ){
+        Trace.d("idArrayList = " + mArrayList);
+        //		Trace.d( "" + idArrayList.get( 0 ) );
 
-                do{
+        // リストの再描画
+        mListView.invalidateViews();
 
-                    //　データベースからデータを取得する
-                    long id  = constantsCursor.getLong( constantsCursor.getColumnIndex( "_id" ) );
-                    String data = constantsCursor.getString( constantsCursor.getColumnIndex( MySQLiteOpenHelper.DATA ) );
-                    String tenpo = constantsCursor.getString( constantsCursor.getColumnIndex( MySQLiteOpenHelper.TENPO ) );
-                    String kisyu = constantsCursor.getString( constantsCursor.getColumnIndex( MySQLiteOpenHelper.KISYU ) );
-                    String memo = constantsCursor.getString( constantsCursor.getColumnIndex( MySQLiteOpenHelper.MEMO ) );
+        // 収支入力画面に飛ぶ
+        if (firstFlg) {
+            intentConfigCommonProcess(true, -1);
+        }
 
-                    exInvestment = Integer.parseInt(constantsCursor.getString(constantsCursor.getColumnIndex(MySQLiteOpenHelper.INVESTMENT)));
-                    exRecovery   = Integer.parseInt(constantsCursor.getString(constantsCursor.getColumnIndex(MySQLiteOpenHelper.RECOVERY)));
-
-                    int invPtn = constantsCursor.getInt(constantsCursor.getColumnIndex(MySQLiteOpenHelper.INVESTMENT_TYPE));
-                    int recPtn = constantsCursor.getInt(constantsCursor.getColumnIndex(MySQLiteOpenHelper.RECOVERY_TYPE));
-
-                    double exchangeBall = constantsCursor.getDouble(constantsCursor.getColumnIndex(MySQLiteOpenHelper.EXCHANGE_BALL));
-                    double exchangeSlot = constantsCursor.getDouble(constantsCursor.getColumnIndex(MySQLiteOpenHelper.EXCHANGE_MEDAL));
-
-                    // 収支の計算
-                    exTotal = getCalcTotalSyushi( invPtn, recPtn, exchangeBall, exchangeSlot );
-
-                    //　リストに追加
-                    mArrayList.add( new ListViewItem( id, tenpo, kisyu, exInvestment, exRecovery, exTotal, memo ) );
-
-                    // 取得したデータをリストに保存しておく
-    //				sqlDataArrayList.add( new ListSQLData( id, recovery, recovery ) );
-
-                    Trace.d( id + ":" + data);
-                }while( constantsCursor.moveToNext( ) );
-            }
-            // リストなし時の処理
-            else{
-                firstFlg = true;
-                Trace.d( "データなし" );
-            }
-
-			Trace.d( "idArrayList = " + mArrayList );
-	//		Trace.d( "" + idArrayList.get( 0 ) );
-
-			// リストの再描画
-			mListView.invalidateViews();
-
-			// 収支入力画面に飛ぶ
-			if( firstFlg ){
-				intentConfigCommonProcess( true, -1 );
-			}
-
-		// 容量オーバー時の処理
-    	}catch( SQLiteDiskIOException e ){
-    		// アラートダイアログの表示
-    		DialogFragment newFragment = new AlertDialogFragment( );
-
-    		newFragment.show( getFragmentManager(), "showAlertDialog" );
-    	}
-
-        Trace.d( "onCreate end" );
+        Trace.d("onCreate end");
     }
 
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		constantsCursor.close();
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        constantsCursor.close();
         syushiDatabase.close();
-	}
+    }
 
 
-	// startActivityForResult で起動させたアクティビティが
-	// finish() により破棄されたときにコールされる
-	// requestCode : startActivityForResult の第二引数で指定した値が渡される
-	// resultCode : 起動先のActivity.setResult の第一引数が渡される
-	// Intent data : 起動先Activityから送られてくる Intent
+    // startActivityForResult で起動させたアクティビティが
+    // finish() により破棄されたときにコールされる
+    // requestCode : startActivityForResult の第二引数で指定した値が渡される
+    // resultCode : 起動先のActivity.setResult の第一引数が渡される
+    // Intent data : 起動先Activityから送られてくる Intent
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 
-    	Trace.d( "requestCode = " + requestCode  );
-    	Trace.d( "resultCode = " + resultCode  );
+        Trace.d("requestCode = " + requestCode);
+        Trace.d("resultCode = " + resultCode);
 
         // 引継ぎ用
         boolean newFlg = false;
 
         // requestCodeがサブ画面か確認する
-        if ( requestCode == ADD_LIST_ACTIVITY ) {
+        if (requestCode == ADD_LIST_ACTIVITY) {
             // resultCodeがOKか確認する
-            if( resultCode == RESULT_OK ){
+            if (resultCode == RESULT_OK) {
 
-                String exTenpo = "";
-                String exKisyu = "";
-                String exMemo = "";
-
-                int invPtn = 0;      //  投資タイプ
-                int recPtn = 0;      //  回収タイプ
-
-                double exchangeBall = 4.0;     // 玉
-                double exchangeSlot  = 20.00;     // スロット
-
-                int exPos = intent.getIntExtra( "lvPos", 0 );
-                long iid = intent.getLongExtra( "search", 0 );    // 保存ID;
-
-                // 結果を取得する
-                newFlg = intent.getBooleanExtra( "newFlg", false );
-                // 登録
-                calData = intent.getStringExtra( "data" );          // 日付(収支入力画面で変更ができるため・・・)
-//                calData = iid;          // 日付(収支入力画面で変更ができるため・・・)
+//                int exPos = intent.getIntExtra("lvPos", 0);
+//                long iid = intent.getLongExtra("search", 0);    // 保存ID;
 //
-//                titleStr = intent.getStringExtra( "data" );
-//                titleName.setText(titleStr);
+//                // 結果を取得する
+//                newFlg = intent.getBooleanExtra("newFlg", false);
 
+                // データベースのdata
+                calData = intent.getStringExtra("data");
+
+                // タイトルを変更
+                titleStr = intent.getStringExtra( "ymd" );
+                TextView titleName = (TextView) findViewById(R.id.header_text_list_view);
+                titleName.setText(titleStr);
+
+                //　日付変更のこともあるので、listを作成しなおす
+                mArrayList.clear();
+
+                initListViewItem(calData);
+
+                /*
                 //　データベースにデータを保存する
-                ContentValues cv=new ContentValues();
+                ContentValues cv = new ContentValues();
 
                 //　データベースから値を取得する。
                 // IDで収支データを取得する
@@ -409,7 +321,7 @@ public class ListViewActivity extends Activity{
                     exTenpo = constantsCursor.getString(constantsCursor.getColumnIndex(MySQLiteOpenHelper.TENPO));
                     exKisyu = constantsCursor.getString(constantsCursor.getColumnIndex(MySQLiteOpenHelper.KISYU));
                     exInvestment = Integer.parseInt(constantsCursor.getString(constantsCursor.getColumnIndex(MySQLiteOpenHelper.INVESTMENT)));
-                    exRecovery   = Integer.parseInt(constantsCursor.getString(constantsCursor.getColumnIndex(MySQLiteOpenHelper.RECOVERY)));
+                    exRecovery = Integer.parseInt(constantsCursor.getString(constantsCursor.getColumnIndex(MySQLiteOpenHelper.RECOVERY)));
                     exMemo = constantsCursor.getString(constantsCursor.getColumnIndex(MySQLiteOpenHelper.MEMO));
                     invPtn = constantsCursor.getInt(constantsCursor.getColumnIndex(MySQLiteOpenHelper.INVESTMENT_TYPE));
                     recPtn = constantsCursor.getInt(constantsCursor.getColumnIndex(MySQLiteOpenHelper.RECOVERY_TYPE));
@@ -417,100 +329,100 @@ public class ListViewActivity extends Activity{
                     exchangeSlot = constantsCursor.getDouble(constantsCursor.getColumnIndex(MySQLiteOpenHelper.EXCHANGE_MEDAL));
                 }
 
-                Trace.d( "newFlg = " + newFlg );
-                Trace.d("exTenpo = "+ exTenpo );
-                Trace.d("exKisyu = "+ exKisyu );
-                Trace.d("exPos = "+ exPos );
-                Trace.d("exMemo = "+ exMemo );
+                Trace.d("newFlg = " + newFlg);
+                Trace.d("exTenpo = " + exTenpo);
+                Trace.d("exKisyu = " + exKisyu);
+                Trace.d("exPos = " + exPos);
+                Trace.d("exMemo = " + exMemo);
 
                 //  収支を計算する
-                exTotal = getCalcTotalSyushi( invPtn, recPtn, exchangeBall, exchangeSlot );
+                exTotal = getCalcTotalSyushi(invPtn, recPtn, exchangeBall, exchangeSlot);
 
-				try{
-					//　新規作成時
-					if( newFlg ){
+                try {
+                    //　新規作成時
+                    if (newFlg) {
                         //  リストviewにデータを入力したデータを登録
-                        mArrayList.add( new ListViewItem( iid, exTenpo, exKisyu, exInvestment, exRecovery, exTotal, exMemo ) );
+                        mArrayList.add(new ListViewItem(iid, exTenpo, exKisyu, exInvestment, exRecovery, exTotal, exMemo));
 
-						//　新規フラグのオフ
-						newFlg = false;
-					}
-					// 変更時
-					else{
-						mArrayList.set( exPos,new ListViewItem( mArrayList.get( exPos ).getID(), exTenpo, exKisyu, exInvestment, exRecovery, exTotal, exMemo ) );
-					}
+                        //　新規フラグのオフ
+                        newFlg = false;
+                    }
+                    // 変更時
+                    else {
+                        mArrayList.set(exPos, new ListViewItem(mArrayList.get(exPos).getID(), exTenpo, exKisyu, exInvestment, exRecovery, exTotal, exMemo));
+                    }
 
-				// 保存失敗時
-				if( iid < 0 ){
-					Trace.d( "iid iid iid error" );
-					throw new Exception( );
-				}
+                    // 保存失敗時
+                    if (iid < 0) {
+                        Trace.d("iid iid iid error");
+                        throw new Exception();
+                    }
 
-				}catch( Exception e ){
-					DialogFragment newFragment = new AlertDialogFragment(
-							// Title
-							"保存失敗！",
-							// mess
-							"収支データの保存に失敗しました。\n"+
-							"内部ストレージの容量が不足してます。\n" +
-					   		"容量を確保してからもう一度お試しください。" );
-					newFragment.show( getFragmentManager(), "showAlertDialog" );
+                } catch (Exception e) {
+                    DialogFragment newFragment = new AlertDialogFragment(
+                            // Title
+                            "保存失敗！",
+                            // mess
+                            "収支データの保存に失敗しました。\n" +
+                                    "内部ストレージの容量が不足してます。\n" +
+                                    "容量を確保してからもう一度お試しください。");
+                    newFragment.show(getFragmentManager(), "showAlertDialog");
 
-					Trace.d( "Exception = " + e.toString() );
-				}
-			}
-			// cancel時
-			else if( resultCode == RESULT_CANCELED ){
+                    Trace.d("Exception = " + e.toString());
+                }
+                */
+            }
+            // cancel時
+            else if (resultCode == RESULT_CANCELED) {
+                // 初期入力でデータが保存されなかったときはカレンダー画面に戻る
+                if (firstFlg) {
+                    finish();
+                }
+            }
+        }
 
-				// 初期入力でデータが保存されなかったときはカレンダー画面に戻る
-				if( firstFlg ){
-					finish();
-				}
-			}
-		}
-
-		// リストの再描画
-		mListView.invalidateViews();
+        // リストの再描画
+        mListView.invalidateViews();
     }
 
 
-	/**
-	 *<p>
-	 * 収支入力画面へ飛ぶ
-	 *</p>
-	 * @param newFlg 新規作成かどうか
-	 * @param pos ListViewの何番目の収支データか？
-	 */
-	public void intentConfigCommonProcess( boolean newFlg, int pos ){
+    /**
+     * <p>
+     * 収支入力画面へ飛ぶ
+     * </p>
+     *
+     * @param newFlg 新規作成かどうか
+     * @param pos    ListViewの何番目の収支データか？
+     */
+    public void intentConfigCommonProcess(boolean newFlg, int pos) {
 
-        Trace.d( "pos:"+pos );
+        Trace.d("pos:" + pos);
 
-         // インテント作成
-        Intent intent = new Intent( getApplicationContext(), AddListActivity.class );
+        // インテント作成
+        Intent intent = new Intent(getApplicationContext(), AddListActivity.class);
 
         // 引き継ぐもの
-        intent.putExtra( "newFlg", newFlg );	//　新規作成かどうか
-        intent.putExtra( "pos", pos );		// ポジション
-        intent.putExtra( "ymd", titleStr );     // 日付
+        intent.putExtra("newFlg", newFlg);    //　新規作成かどうか
+        intent.putExtra("pos", pos);        // ポジション
+        intent.putExtra("ymd", titleStr);     // 日付
 
         // searchワード
-        if( pos >= 0 ) {
+        if (pos >= 0) {
             intent.putExtra("search", mArrayList.get(pos).getID());
-        }
-        else{
+        } else {
             intent.putExtra("search", -1);    // searchワード
         }
 
         // 収支入力画面へ
-        startActivityForResult( intent, ADD_LIST_ACTIVITY );
-	}
+        startActivityForResult(intent, ADD_LIST_ACTIVITY);
+    }
 
-	/**
-	 *<p>
-	 * layout調整
-	 *</p>
-	 */
-	public void layout( ) {
+    /**
+     * <p>
+     * layout調整
+     * </p>
+     */
+    public void layout() {
 /*
 //		int px;
         int px_x;
@@ -588,99 +500,187 @@ public class ListViewActivity extends Activity{
 	        ly = new LinearLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT, px_y );
 	        space.setLayoutParams(ly);
 		}*/
-	}
+    }
 
     /**
      * 前の画面に戻る
      */
-    public void onClickLinearHeaderBackAdd( View view ){
-        Trace.d( "onClickLinearHeaderBackAdd" );
-        finish( );
+    public void onClickLinearHeaderBackAdd(View view) {
+        Trace.d("onClickLinearHeaderBackAdd");
+        finish();
     }
 
     /**
      * データの追加
      */
-    public void onClickLinearHeaderAdd( View view ){
-        Trace.d( "onClickLinearHeaderAdd" );
-        intentConfigCommonProcess( true, -1 );
+    public void onClickLinearHeaderAdd(View view) {
+        Trace.d("onClickLinearHeaderAdd");
+        intentConfigCommonProcess(true, -1);
     }
 
 
     /**
      * トータル収支の計算
      *
-     * @param invPtn   投資
-     * @param recPtn   回収
-     * @param exchangeBall   投資パターン
-     * @param exchangeSlot   回収パターン
-     *
+     * @param invPtn       投資
+     * @param recPtn       回収
+     * @param exchangeBall 投資パターン
+     * @param exchangeSlot 回収パターン
      */
-    public int getCalcTotalSyushi( int invPtn, int recPtn, double exchangeBall, double exchangeSlot ) {
+    public int getCalcTotalSyushi(int invPtn, int recPtn, double exchangeBall, double exchangeSlot) {
 
         double calc = 0;
         BigDecimal bd;
 
 
-        Trace.d( "getCalcTotalSyushi" );
-        Trace.d( "invPtn = " + invPtn );
-        Trace.d( "recPtn = " + recPtn );
-        Trace.d( "exchangeBall = " + exchangeBall );
-        Trace.d( "exchangeSlot = " + exchangeSlot );
+        Trace.d("getCalcTotalSyushi");
+        Trace.d("invPtn = " + invPtn);
+        Trace.d("recPtn = " + recPtn);
+        Trace.d("exchangeBall = " + exchangeBall);
+        Trace.d("exchangeSlot = " + exchangeSlot);
 
         // 投資
-        if( invPtn != 0 ){
+        if (invPtn != 0) {
 
             // パチ
-            if(invPtn==1){
+            if (invPtn == 1) {
                 calc = exchangeBall * exInvestment;
             }
 
             // スロ
-            if(invPtn==2){
+            if (invPtn == 2) {
                 calc = exchangeSlot * exInvestment;
             }
 
             // 切り上げ前
-            Trace.d( "calc = " + calc );
+            Trace.d("calc = " + calc);
 
             // ROUND_HALF_UP→四捨五入　ROUND_DOWN→切り捨て　ROUND_UP→切り上げ
             bd = new BigDecimal(calc);
             BigDecimal bd1 = bd.setScale(0, BigDecimal.ROUND_UP);  //小数第0位
 
             // 切り上げ後
-            Trace.d( "calc = " + bd1.doubleValue() );
+            Trace.d("calc = " + bd1.doubleValue());
 
             exInvestment = bd1.intValue();
         }
 
         // 回収
-        if( recPtn != 0 ){
+        if (recPtn != 0) {
 
             // パチ
-            if(recPtn==1){
+            if (recPtn == 1) {
                 calc = exchangeBall * exRecovery;
             }
 
             // スロ
-            if(recPtn==2){
+            if (recPtn == 2) {
                 calc = exchangeSlot * exRecovery;
             }
 
             // 切り上げ前
-            Trace.d( "calc = " + calc );
+            Trace.d("calc = " + calc);
 
             bd = new BigDecimal(calc);
             BigDecimal bd1 = bd.setScale(0, BigDecimal.ROUND_UP);  //小数第0位
 
             // 切り上げ後
-            Trace.d( "calc = " + bd1.doubleValue() );
+            Trace.d("calc = " + bd1.doubleValue());
             exRecovery = bd1.intValue();
         }
-        return (exRecovery-exInvestment);
+        return (exRecovery - exInvestment);
     }
 
+    /**
+     * トータル収支の計算
+     *
+     * @param searchWord データベースの検索ワード
 
+     */
+    public boolean initListViewItem(String searchWord ) {
+
+        try {
+            // どの項目（列）のデータを検索するか」を指定する：SELECT
+            //「どの表から検索するか」を指定する：FROM
+            //「どのような条件で行を検索するか」を指定する：WHERE
+            // 指定した要素でソート？：ORDER BY
+            //
+            // dataを　constantsテーブルから取得し、dataの値でソートする？
+            // SQLite
+            syushiDatabase = (new MySQLiteOpenHelper(getApplicationContext())).getWritableDatabase();
+
+//          ORDER BY → ソート
+//          WHERE data like→検索
+            constantsCursor = syushiDatabase.rawQuery(
+                    "SELECT _id," +
+                            MySQLiteOpenHelper.DATA + "," +
+                            MySQLiteOpenHelper.TENPO + "," +
+                            MySQLiteOpenHelper.EXCHANGE_BALL + "," +
+                            MySQLiteOpenHelper.EXCHANGE_MEDAL + "," +
+//                            MySQLiteOpenHelper.NUMBER + "," +
+                            MySQLiteOpenHelper.KISYU + "," +
+//                            MySQLiteOpenHelper.TYPE + "," +
+//                            MySQLiteOpenHelper.EVENT + "," +
+                            MySQLiteOpenHelper.INVESTMENT + "," +
+                            MySQLiteOpenHelper.INVESTMENT_TYPE + "," +
+                            MySQLiteOpenHelper.RECOVERY + "," +
+                            MySQLiteOpenHelper.RECOVERY_TYPE + "," +
+//                            MySQLiteOpenHelper.START_TIME + "," +
+//                            MySQLiteOpenHelper.END_TIME + "," +
+                            MySQLiteOpenHelper.MEMO +
+                            " FROM constants" +
+                            " WHERE data like '%" + searchWord + "%'" +
+                            " ORDER BY _id",
+                    null);
+
+            // データを取得
+            // カーソルを一番最初に戻す。
+            if (constantsCursor.moveToFirst()) {
+
+                do {
+
+                    //　データベースからデータを取得する
+                    long id = constantsCursor.getLong(constantsCursor.getColumnIndex("_id"));
+                    String data = constantsCursor.getString(constantsCursor.getColumnIndex(MySQLiteOpenHelper.DATA));
+                    String tenpo = constantsCursor.getString(constantsCursor.getColumnIndex(MySQLiteOpenHelper.TENPO));
+                    String kisyu = constantsCursor.getString(constantsCursor.getColumnIndex(MySQLiteOpenHelper.KISYU));
+                    String memo = constantsCursor.getString(constantsCursor.getColumnIndex(MySQLiteOpenHelper.MEMO));
+
+                    exInvestment = Integer.parseInt(constantsCursor.getString(constantsCursor.getColumnIndex(MySQLiteOpenHelper.INVESTMENT)));
+                    exRecovery = Integer.parseInt(constantsCursor.getString(constantsCursor.getColumnIndex(MySQLiteOpenHelper.RECOVERY)));
+
+                    int invPtn = constantsCursor.getInt(constantsCursor.getColumnIndex(MySQLiteOpenHelper.INVESTMENT_TYPE));
+                    int recPtn = constantsCursor.getInt(constantsCursor.getColumnIndex(MySQLiteOpenHelper.RECOVERY_TYPE));
+
+                    double exchangeBall = constantsCursor.getDouble(constantsCursor.getColumnIndex(MySQLiteOpenHelper.EXCHANGE_BALL));
+                    double exchangeSlot = constantsCursor.getDouble(constantsCursor.getColumnIndex(MySQLiteOpenHelper.EXCHANGE_MEDAL));
+
+                    // 収支の計算
+                    exTotal = getCalcTotalSyushi(invPtn, recPtn, exchangeBall, exchangeSlot);
+
+                    //　リストに追加
+                    mArrayList.add(new ListViewItem(id, tenpo, kisyu, exInvestment, exRecovery, exTotal, memo));
+
+                    // 取得したデータをリストに保存しておく
+                    //				sqlDataArrayList.add( new ListSQLData( id, recovery, recovery ) );
+
+                    Trace.d(id + ":" + data);
+                } while (constantsCursor.moveToNext());
+            }
+            // リストなし時の処理
+            else {
+                return true;
+            }
+            // 容量オーバー時の処理
+        } catch (SQLiteDiskIOException e) {
+            // アラートダイアログの表示
+            DialogFragment newFragment = new AlertDialogFragment();
+
+            newFragment.show(getFragmentManager(), "showAlertDialog");
+        }
+
+        return false;
+    }
 }
 
 

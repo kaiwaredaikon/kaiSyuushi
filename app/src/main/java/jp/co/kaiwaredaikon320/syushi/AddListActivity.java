@@ -616,7 +616,6 @@ public class AddListActivity extends Activity implements TextWatcher{
         int saveInv;
         int saveRec;
 
-
         // 台番
         try {
             saveNumber = Integer.parseInt(buttonNumber.getText().toString());
@@ -754,10 +753,10 @@ public class AddListActivity extends Activity implements TextWatcher{
         }
 
         // 引継ぎ用
-        intent.putExtra("newFlg", exNewFlg);   //　新規作成かどうか
-        intent.putExtra("lvPos", exPos);        // ListViewのポス
-        intent.putExtra("search", exSearch);   // ID
-        intent.putExtra("data", exToday);      // 日付
+//        intent.putExtra("newFlg", exNewFlg);   //　新規作成かどうか
+//        intent.putExtra("lvPos", exPos);        // ListViewのポス
+        intent.putExtra("ymd", exToday );   // 日付(○年○月○日)
+        intent.putExtra("data", toTwoDigits(currentYear)+toTwoDigits(currentMonth+1)+toTwoDigits(currentDay));
 
         // 結果を設定
         setResult(RESULT_OK, intent);

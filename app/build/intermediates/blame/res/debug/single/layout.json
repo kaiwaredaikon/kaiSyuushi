@@ -32,12 +32,12 @@
         "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/row_custom_preference.xml"
     },
     {
-        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/number_picker.xml",
-        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/number_picker.xml"
-    },
-    {
         "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/draw_data_list.xml",
         "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/draw_data_list.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/number_picker.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/number_picker.xml"
     },
     {
         "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/detailed_listview.xml",
@@ -58,6 +58,10 @@
     {
         "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/listviewactivity.xml",
         "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/listviewactivity.xml"
+    },
+    {
+        "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/divider.xml",
+        "source": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/src/main/res/layout/divider.xml"
     },
     {
         "merged": "/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/merged/debug/layout/layout_webview.xml",
