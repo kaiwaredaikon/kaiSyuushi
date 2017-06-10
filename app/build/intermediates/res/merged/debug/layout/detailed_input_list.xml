@@ -9,13 +9,13 @@
     
 	<FrameLayout
 	   android:layout_width="match_parent"
-	   android:layout_height="wrap_content"
+	   android:layout_height="24dp"
 	>    
 	    <!-- 機種名 -->
 		<TextView
 			android:id="@+id/input_typeText"
 			android:layout_width="match_parent"
-			android:layout_height="32dp"
+			android:layout_height="24dp"
 			android:ems="10"
 			android:gravity="start|center"
 			android:text="@string/str_com_kisyu"
@@ -23,27 +23,28 @@
 			android:textColor="#ffffff"
 			android:paddingLeft="10dp"
 			android:textSize="16sp"
-			android:singleLine="true"
-			android:ellipsize="end"
+			android:maxLines="1"
+			android:ellipsize="middle"
 		/>
 
-		<!-- 矢印 -->  		
-	 	<RelativeLayout
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content" >
-		    <ImageView
-				android:id="@+id/arrow"
-		        android:layout_width="24dp"
-		        android:layout_height="32dp"
-				android:paddingRight="5dp"
-                android:src="@android:drawable/ic_menu_more"
-		        android:contentDescription="@string/str_description"
-		        android:scaleType="fitCenter"
+		<!-- 矢印 -->
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+			<ImageView
+               android:id="@+id/arrow"
+				android:layout_width="24dp"
+				android:layout_height="32dp"
+               android:layout_alignParentRight="true"
 				android:layout_centerVertical="true"
-		        android:layout_alignParentRight="true"/>
-		</RelativeLayout>	
-				
-		
+				android:contentDescription="@string/str_description"
+				android:paddingRight="5dp"
+               android:scaleType="fitCenter"
+				android:src="@android:drawable/ic_menu_more" />
+       </RelativeLayout>
+
+
 	</FrameLayout>
 	
 	<LinearLayout
@@ -77,8 +78,8 @@
 			android:paddingRight="5dp"
 			android:paddingLeft="0dp"
 			android:textSize="16sp"
-			android:singleLine="true"
-			android:ellipsize="end"
+			android:maxLines="1"
+			android:ellipsize="middle"
 		/>
 
 		<!-- 回収 -->
@@ -105,8 +106,8 @@
 			android:paddingRight="5dp"
 			android:paddingLeft="0dp"
 			android:textSize="16sp"
-			android:singleLine="true"
-			android:ellipsize="end"/>
+			android:maxLines="1"
+			android:ellipsize="middle"/>
 
 		<!-- 収支 -->
         <TextView
@@ -132,8 +133,8 @@
 			android:paddingRight="5dp"
 			android:paddingLeft="0dp"
 			android:textSize="16sp"
-			android:singleLine="true"
-			android:ellipsize="end"
+			android:maxLines="1"
+			android:ellipsize="middle"
 
 		/>
 	</LinearLayout>

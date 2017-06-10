@@ -222,7 +222,8 @@ public class ListViewDialog extends Activity{
             }
         });
 
-        dialog = new AlertDialog.Builder( con, R.style.ListViewDialogStyle )
+//        dialog = new AlertDialog.Builder( con, R.style.ListViewDialogStyle )
+                dialog = new AlertDialog.Builder( this )
                 .setTitle(label)
                 .setNegativeButton( R.string.button_cancel, null)
                 .setView(listView).create();
