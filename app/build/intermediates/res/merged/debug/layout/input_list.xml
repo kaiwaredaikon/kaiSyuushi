@@ -138,14 +138,14 @@
                     android:layout_height="wrap_content"
                     android:text="@string/str_com_memo_dot"
                     android:textColor="@color/black"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.75"
                     android:gravity="center"/>
 
                 <TextView
                     android:id="@+id/input_typeText_memo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1.75"
                     android:ems="10"
                     android:gravity="start|center"
                     android:paddingLeft="5dp"

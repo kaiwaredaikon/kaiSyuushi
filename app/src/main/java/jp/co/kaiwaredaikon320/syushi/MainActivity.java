@@ -308,7 +308,7 @@ public class MainActivity extends Activity implements GestureDetector.OnGestureL
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 			alertDialogBuilder.setTitle("確認");
-			alertDialogBuilder.setMessage("収支手帳を終了しますか？");
+			alertDialogBuilder.setMessage("収太郎を終了しますか？");
 
 			alertDialogBuilder.setPositiveButton("はい", new DialogInterface.OnClickListener() {
 				@Override

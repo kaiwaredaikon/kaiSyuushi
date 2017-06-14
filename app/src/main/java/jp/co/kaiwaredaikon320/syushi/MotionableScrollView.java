@@ -51,7 +51,6 @@ public class MotionableScrollView extends ScrollView {
 
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
-		// TODO 自動生成されたメソッド・スタブ
 		Trace.d( "dispatchTouchEventdispatchTouchEventdispatchTouchEvent2" );
 		return super.dispatchTouchEvent(ev);
 	}
@@ -88,7 +87,6 @@ Trace.d( "onInterceptTouchEventonInterceptTouchEventonInterceptTouchEvent3" );
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		Trace.d( "onTouchEventonTouchEventonTouchEventonTouchEventonTouchEvent2" );
-		// TODO 自動生成されたメソッド・スタブ
 		return false;
 	}
 */

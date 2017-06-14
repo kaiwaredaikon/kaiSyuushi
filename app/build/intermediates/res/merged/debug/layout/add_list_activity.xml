@@ -773,7 +773,9 @@
                     android:ems="10"
                     android:gravity="center|end"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/add_text_size"/>
+                    android:textSize="@dimen/add_text_size"
+                    android:maxLines="1"
+                    android:ellipsize="middle"/>
                 <Space
                     android:id="@+id/add_space_jikyu_03"
                     android:layout_width="9dp"

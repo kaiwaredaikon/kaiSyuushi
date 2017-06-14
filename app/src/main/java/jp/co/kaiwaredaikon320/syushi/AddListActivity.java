@@ -364,7 +364,7 @@ public class AddListActivity extends Activity implements TextWatcher{
         }
 
         // 交換率の反映
-        textViewExchangeId.setText(exchangeBall+"玉/"+exchangeSlot+"枚");
+        textViewExchangeId.setText(exchangeBall+"円/"+exchangeSlot+"枚");
 
         // ボタンのテキストを変更する
         investmentExchangePtn --;
@@ -924,7 +924,7 @@ public class AddListActivity extends Activity implements TextWatcher{
             // パチ
             if(investmentExchangePtn==1){
                 calc = exchangeBall * Integer.parseInt( buttonInvestmentId.getText().toString());
-                unit = "円("+exchangeBall + "玉)";
+                unit = "円("+exchangeBall + "円)";
             }
 
             // スロ
@@ -1612,7 +1612,7 @@ public class AddListActivity extends Activity implements TextWatcher{
                             inputChangeFlg = true;
                         }
                         // 交換率描画を変更
-                        textViewExchangeId.setText(exchangeBall+"玉/"+exchangeSlot+"枚");
+                        textViewExchangeId.setText(exchangeBall+"円/"+exchangeSlot+"枚");
 
                         //　収支再計算
                         changeTotalTextColor( );
@@ -1731,16 +1731,17 @@ public class AddListActivity extends Activity implements TextWatcher{
                                 // 投資
                                 case R.id.add_btn_investment:
                                     Trace.d( "buttonInvestmentId = " + newEvent.getText() );
-                                    buttonInvestmentId.setText(""+newEvent.getText(), BufferType.NORMAL);
+                                    buttonInvestmentId.setText(""+Integer.parseInt(newEvent.getText().toString()), BufferType.NORMAL);
                                     changeTotalTextColor( );
                                     Trace.d( "buttonInvestmentId = " + buttonInvestmentId );
                                     break;
 
                                 // 回収
                                 case R.id.add_btn_recovery:
-                                    buttonRecoveryId.setText(newEvent.getText(), BufferType.NORMAL);
+//                                    buttonRecoveryId.setText(newEvent.getText(), BufferType.NORMAL);
+                                    buttonRecoveryId.setText(""+Integer.parseInt(newEvent.getText().toString()), BufferType.NORMAL);
                                     changeTotalTextColor( );
-                                    Trace.d( "buttonInvestmentId = " + buttonRecoveryId );
+                                    Trace.d( "buttonRecoveryId = " + buttonRecoveryId );
                                     break;
                             }
                         }
@@ -2118,7 +2119,7 @@ public class AddListActivity extends Activity implements TextWatcher{
         buttonTenpoId.setText( txt, BufferType.NORMAL);
 
         // 交換率の反映
-        textViewExchangeId.setText(exchangeBall+"玉/"+exchangeSlot+"枚");
+        textViewExchangeId.setText(exchangeBall+"円/"+exchangeSlot+"枚");
 
         // 収支を計算し直す
         changeTotalTextColor( );
