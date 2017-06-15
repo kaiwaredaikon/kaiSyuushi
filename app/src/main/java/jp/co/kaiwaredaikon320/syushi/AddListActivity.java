@@ -1557,8 +1557,8 @@ public class AddListActivity extends Activity implements TextWatcher{
             return;
         }
 
-        //lvd.createListViewDialog( 0, "店舗名", buttonTenpoId, (int)(windowWidth*0.8), (int)(windowHeight*0.8) );
-        lvd.createListViewDialog( 0, "店舗名", this, (int)(windowWidth*0.8), (int)(windowHeight*0.8) );
+        lvd.createListViewDialog( 0, "店舗名", buttonTenpoId, (int)(windowWidth*0.8), (int)(windowHeight*0.8) );
+//        lvd.createListViewDialog( 0, "店舗名", this, (int)(windowWidth*0.8), (int)(windowHeight*0.8) );
 
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
@@ -2061,8 +2061,8 @@ public class AddListActivity extends Activity implements TextWatcher{
             return;
         }
 
-//        lvd.createListViewDialog(1, "機種名", buttonKisyuId, (int)(windowWidth*0.8), (int)(windowHeight*0.8) );
-        lvd.createListViewDialog(1, "機種名", this, (int)(windowWidth*0.8), (int)(windowHeight*0.8) );
+        lvd.createListViewDialog(1, "機種名", buttonKisyuId, (int)(windowWidth*0.8), (int)(windowHeight*0.8) );
+//        lvd.createListViewDialog(1, "機種名", this, (int)(windowWidth*0.8), (int)(windowHeight*0.8) );
 
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }

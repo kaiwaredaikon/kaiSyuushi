@@ -112,6 +112,7 @@ public class ListViewDialog extends Activity{
 		店舗リストをダイアログで表示する
 	**/
 	public void createListViewDialog( int type, String label, final TextView txt, int width, int height ){
+    Trace.d("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 
 	    final ArrayList<Item> tmpList;
 
@@ -149,8 +150,9 @@ public class ListViewDialog extends Activity{
             	dialog.dismiss();
             }
 		});
-
-		dialog = new AlertDialog.Builder( con, R.style.ListViewDialogStyle )
+// 20170615 テーマの指定なし　list_view_dialog_textview.xml　でカラー指定
+//		dialog = new AlertDialog.Builder( con, R.style.ListViewDialogStyle )
+        dialog = new AlertDialog.Builder( con )
 		.setTitle(label)
         .setNegativeButton( R.string.button_cancel, null)
 		.setView(listView).create();
@@ -167,8 +169,9 @@ public class ListViewDialog extends Activity{
     /**
         店舗リストをダイアログで表示する
      **/
+/*
+20170615 未使用みたいです
     public void createListViewDialog( final int type, String label, final AddListActivity act, int width, int height ){
-
         final ArrayList<Item> tmpList;
 
         switch( type ){
@@ -236,7 +239,7 @@ public class ListViewDialog extends Activity{
 //        lp.height = height;
 //        dialog.getWindow().setAttributes(lp);
     }
-
+*/
 	// ListViewで使用するItemClass
     public class Item{
 
