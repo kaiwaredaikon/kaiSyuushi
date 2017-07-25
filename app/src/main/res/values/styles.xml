@@ -1,0 +1,84 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- menu用style -->
+    <style name="MenuButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">@dimen/app_margin_small</item>
+        <item name="android:background">@null</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+	<!-- Theme -->
+	<!-- Theme　汎用 -->
+    <style name="CustomTheme" parent="android:Theme.Holo.Light">
+        <!-- Customize ActionBar -->
+        <item name="android:actionBarStyle">@style/CustomActionBarStyle</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_ab_back_holo_dark_am</item>
+	    <item name="android:actionMenuTextColor">@android:color/white</item>
+     </style>
+
+	<!-- Style -->
+	<!-- Style ActionBar -->
+    <style name="CustomActionBarStyle" parent="android:Widget.Holo.ActionBar.Solid">
+        <item name="android:titleTextStyle">@style/CustomActionBarTitleStyle</item>
+        <item name="android:subtitleTextStyle">@style/CustomActionBarSubitleStyle</item>
+        <item name="android:background">#0C01FF</item>
+        <item name="android:backgroundStacked">@android:color/white</item>
+    </style>
+
+    <style name="CustomActionBarTitleStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="CustomActionBarSubitleStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Subtitle">
+        <item name="android:typeface">monospace</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_ab_back_holo_dark_am</item>
+    </style>
+
+    <!-- Style ダイアログ -->
+    <style name="ListViewDialogStyle" parent="@android:style/Theme.Black">
+        <item name="android:alertDialogStyle">@style/AlertDialog</item>
+    </style>
+
+    <!-- Style ダイアログ -->
+    <style name="AlertDialog" parent="@android:style/Theme.Black">
+
+        <item name="android:fullBright">@android:color/transparent</item>
+        <item name="android:fullDark">@android:color/transparent</item>
+
+        <!--titleの背景色-->
+        <item name="android:topDark">@color/black</item>
+
+        <!--中身のバックカラー-->
+        <item name="android:centerDark">@color/white</item>
+
+        <item name="android:topBright">@color/midnightblue</item>
+        <item name="android:centerBright">@color/darkcyan</item>
+        <item name="android:centerMedium">@color/green</item>
+        <item name="android:bottomBright">@color/chartreuse</item>
+        <item name="android:bottomDark">@color/yellow</item>
+        <item name="android:bottomMedium">@color/darkred</item>
+    </style>
+
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:layout_margin="50dip"
+  android:orientation="vertical"
+  android:gravity="center_horizontal"
+  android:background="@color/scroll_dialog_title_background"
+  android:textColor="@color/scroll_dialog_title_foreground" >
+
+
+    <TextView
+      android:id="@+id/DIALOG_TEXT"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:padding="5dip"
+      android:textColor="@color/scroll_dialog_text_foreground"
+      android:background="@color/scroll_dialog_text_background"
+      android:textSize="20px">
+    </TextView>
+
+
+</LinearLayout>

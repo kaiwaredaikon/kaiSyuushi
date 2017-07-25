@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceScreen android:title="@string/dpre_month_syushi" android:key="dpre_key_month_syushi"></PreferenceScreen>
+    <PreferenceScreen android:title="@string/dpre_year_syushi" android:key="dpre_key_year_syushi"></PreferenceScreen>
+    <PreferenceScreen android:title="@string/dpre_total_syushi" android:key="dpre_key_total_syushi"></PreferenceScreen>
+
+    <PreferenceScreen android:title="@string/dpre_tenpo_syushi" android:key="dpre_key_tenpo_syushi"></PreferenceScreen>
+    <PreferenceScreen android:title="@string/dpre_type_syushi" android:key="dpre_key_type_syushi"></PreferenceScreen>
+</PreferenceScreen>

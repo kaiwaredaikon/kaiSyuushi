@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--押下-->
+    <item
+        android:state_pressed="true"
+        android:drawable="@color/bg_color_white_alpha_3f" />
+     <!--通常状態-->
+    <item
+        android:state_pressed="false"
+        android:drawable="@color/header_background" />
+</selector>

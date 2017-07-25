@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>   
+<resources>   
+  <color name="scroll_dialog_background">#e4dccc</color>   
+  <color name="scroll_dialog_title_background">#34211d</color>   
+  <color name="scroll_dialog_title_foreground">#ffffff</color>   
+  <color name="scroll_dialog_button_foreground">#ffffff</color>   
+  <color name="scroll_dialog_text_background">#ffffff</color>   
+  <color name="scroll_dialog_text_foreground">#000000</color>   
+</resources>  
