@@ -1,11 +1,5 @@
 package jp.co.kaiwaredaikon320.syushi;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
@@ -13,11 +7,15 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDiskIOException;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
 
 public class DrawDataDetailedActivity extends Activity{
 
@@ -392,7 +390,8 @@ public class DrawDataDetailedActivity extends Activity{
 				}
 				// スロ
 				if( invPtn == 2 ){
-					calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+//					calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+                    calcInv = (constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT )) / exchangeSlot) *100;
 				}
 
 				//　回収計算
@@ -406,7 +405,8 @@ public class DrawDataDetailedActivity extends Activity{
 				}
 				// スロ
 				if( revPtn == 2 ){
-					calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+//					calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+                    calcRev = (constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY )) / exchangeSlot) *100;
 				}
 
 				Trace.d("現在の項目数は " + mArrayList.size() + " です");
@@ -508,7 +508,8 @@ public class DrawDataDetailedActivity extends Activity{
 					}
 					// スロ
 					if( invPtn == 2 ){
-						calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+//						calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+						calcInv = (constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT )) / exchangeSlot) *100;
 					}
 
 					//　トータル投資
@@ -526,7 +527,8 @@ public class DrawDataDetailedActivity extends Activity{
 					}
 					// スロ
 					if( revPtn == 2 ){
-						calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+//						calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+						calcRev = (constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY )) / exchangeSlot) *100;
 					}
 
 					//　トータル
@@ -628,7 +630,8 @@ public class DrawDataDetailedActivity extends Activity{
 					}
 					// スロ
 					if( invPtn == 2 ){
-						calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+//						calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+						calcInv = (constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT )) / exchangeSlot) *100;
 					}
 
 					//　トータル投資
@@ -647,6 +650,7 @@ public class DrawDataDetailedActivity extends Activity{
 					// スロ
 					if( revPtn == 2 ){
 						calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+						calcRev = (constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY )) / exchangeSlot) *100;
 					}
 
 					//　トータル
@@ -749,7 +753,8 @@ public class DrawDataDetailedActivity extends Activity{
 					}
 					// スロ
 					if( invPtn == 2 ){
-						calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+//						calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+						calcInv = (constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT )) / exchangeSlot) *100;
 					}
 
 					//　トータル投資
@@ -767,7 +772,8 @@ public class DrawDataDetailedActivity extends Activity{
 					}
 					// スロ
 					if( revPtn == 2 ){
-						calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+//						calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+						calcRev = (constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY )) / exchangeSlot) *100;
 					}
 
 					//　トータル

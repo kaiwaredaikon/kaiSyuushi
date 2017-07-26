@@ -1,8 +1,5 @@
 package jp.co.kaiwaredaikon320.syushi;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -10,6 +7,9 @@ import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Environment;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class DataRestoration {
 
@@ -169,7 +169,6 @@ public class DataRestoration {
 			}
 
 			// あらーとを表示させる
-			// TODO 自動生成されたメソッド・スタ
 	        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder( con );
 
 	        alertDialogBuilder.setTitle( "復元失敗" );

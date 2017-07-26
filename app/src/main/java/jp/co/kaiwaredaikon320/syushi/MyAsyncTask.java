@@ -1,11 +1,5 @@
 package jp.co.kaiwaredaikon320.syushi;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.List;
-
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
@@ -19,6 +13,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDiskIOException;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.List;
 
 public class MyAsyncTask extends AsyncTask<Integer, Integer, Integer> implements OnCancelListener {
 
@@ -267,7 +267,8 @@ public class MyAsyncTask extends AsyncTask<Integer, Integer, Integer> implements
                         }
                         // スロ
                         if( invPtn == 2 ){
-                            calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+//                            calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+							calcInv = (constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT )) / exchangeSlot) *100;
                         }
 
                         //　トータル投資
@@ -285,7 +286,8 @@ public class MyAsyncTask extends AsyncTask<Integer, Integer, Integer> implements
                         }
                         // スロ
                         if( revPtn == 2 ){
-                            calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+//                            calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+							calcRev = (constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY )) / exchangeSlot) *100;
                         }
 
                         //　トータル
@@ -421,7 +423,8 @@ public class MyAsyncTask extends AsyncTask<Integer, Integer, Integer> implements
                         }
                         // スロ
                         if( invPtn == 2 ){
-                            calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+ //                           calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+                            calcInv = (constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT )) / exchangeSlot) *100;
                         }
 
                         //　トータル投資
@@ -439,7 +442,8 @@ public class MyAsyncTask extends AsyncTask<Integer, Integer, Integer> implements
                         }
                         // スロ
                         if( revPtn == 2 ){
-                            calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+//s                            calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+                            calcRev = (constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY )) / exchangeSlot) *100;
                         }
 
                         //　トータル
@@ -538,7 +542,8 @@ public class MyAsyncTask extends AsyncTask<Integer, Integer, Integer> implements
                     }
                     // スロ
                     if( invPtn == 2 ){
-                        calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+//                        calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+                        calcInv = (constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT )) / exchangeSlot) *100;
                     }
 
                     //　トータル投資
@@ -556,7 +561,8 @@ public class MyAsyncTask extends AsyncTask<Integer, Integer, Integer> implements
                     }
                     // スロ
                     if( revPtn == 2 ){
-                        calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+//                        calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+                        calcRev = (constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY )) / exchangeSlot) *100;
                     }
 
                     //　トータル
@@ -729,7 +735,8 @@ public class MyAsyncTask extends AsyncTask<Integer, Integer, Integer> implements
                         }
                         // スロ
                         if( invPtn == 2 ){
-                            calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+//                            calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+                            calcInv = (constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT )) / exchangeSlot) *100;
                         }
 
                         //　トータル投資
@@ -747,7 +754,8 @@ public class MyAsyncTask extends AsyncTask<Integer, Integer, Integer> implements
                         }
                         // スロ
                         if( revPtn == 2 ){
-                            calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+//                            calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+                            calcRev = (constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY )) / exchangeSlot) *100;
                         }
 
                         //　トータル
@@ -920,7 +928,8 @@ public class MyAsyncTask extends AsyncTask<Integer, Integer, Integer> implements
 						}
 						// スロ
 						if( invPtn == 2 ){
-							calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+//							calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+                            calcInv = (constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT )) / exchangeSlot) *100;
 						}
 
 						//　トータル投資
@@ -938,7 +947,8 @@ public class MyAsyncTask extends AsyncTask<Integer, Integer, Integer> implements
 						}
 						// スロ
 						if( revPtn == 2 ){
-							calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+//							calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+                            calcRev = (constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY )) / exchangeSlot) *100;
 						}
 
 						//　トータル
@@ -1087,7 +1097,8 @@ public class MyAsyncTask extends AsyncTask<Integer, Integer, Integer> implements
 						}
 						// スロ
 						if( invPtn == 2 ){
-							calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+//							calcInv = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+							calcInv = (constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT )) / exchangeSlot) *100;
 						}
 
 						//　トータル投資
@@ -1105,7 +1116,8 @@ public class MyAsyncTask extends AsyncTask<Integer, Integer, Integer> implements
 						}
 						// スロ
 						if( revPtn == 2 ){
-							calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+//							calcRev = exchangeSlot*constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+							calcRev = (constantsCursor.getInt( constantsCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY )) / exchangeSlot) *100;
 						}
 
 						//　トータル

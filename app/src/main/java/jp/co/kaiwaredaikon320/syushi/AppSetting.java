@@ -166,10 +166,38 @@ public class AppSetting
      */
     public static int getBigDecimalInt( double tmp, int keta, int type ){
 
+        int calc;
+        int ret;
+		int rate = MyPrefSetting.getRate();
+
+		// 最小交換単位が１の場合は小数点の計算も含む？
+		if( rate == 1 ){
+			BigDecimal bd = new BigDecimal(tmp);
+			BigDecimal bd1 = bd.setScale( keta, type);
+
+			return bd1.intValue();
+		}
+		//　指定されている最低交換単位で計算(切り捨て)
+		else {
+			calc = (int) (tmp / rate);
+			ret = calc * rate;
+
+			Trace.d("gatBitdecimalInt calc = " + calc);
+			Trace.d("gatBitdecimalInt ret = " + ret);
+
+			return ret;
+		}
+    }
+
+/*
+	public static int getBigDecimalInt( double tmp, int keta, int type ){
+
         BigDecimal bd = new BigDecimal(tmp);
         BigDecimal bd1 = bd.setScale( keta, type);
 
         return bd1.intValue();
-    }
+	}
+*/
+
 }
 

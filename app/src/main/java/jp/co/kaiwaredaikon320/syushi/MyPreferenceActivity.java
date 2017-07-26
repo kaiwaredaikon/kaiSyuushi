@@ -22,7 +22,6 @@ public class MyPreferenceActivity extends Activity{
         // Upアイコンの表示
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-
     }
 
 	@Override

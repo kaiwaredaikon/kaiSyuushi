@@ -101,7 +101,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 			cv.put( TENPO, "店舗未登録");
             //  交換率
             cv.put( EXCHANGE_BALL, 4.0 );
-            cv.put( EXCHANGE_MEDAL, 20.00 );
+            cv.put( EXCHANGE_MEDAL, 5.0 );
 
             // 台番
             cv.put( NUMBER, 0 );
@@ -286,7 +286,8 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
                 }
                 // スロ
                 if( invPtn == 2 ){
-                    calc = exchangeSlot*totalCursor.getInt( totalCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+//                    calc = exchangeSlot*totalCursor.getInt( totalCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT ) );
+                    calc = (totalCursor.getInt( totalCursor.getColumnIndex( MySQLiteOpenHelper.INVESTMENT )) / exchangeSlot) *100;
                 }
 
                 //　データを加算
@@ -343,7 +344,8 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
                 }
                 // スロ
                 if( revPtn == 2 ){
-                    calc = exchangeSlot*totalCursor.getInt( totalCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+//                    calc = exchangeSlot*totalCursor.getInt( totalCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY ) );
+                    calc = (totalCursor.getInt( totalCursor.getColumnIndex( MySQLiteOpenHelper.RECOVERY )) / exchangeSlot) *100;
                 }
 
                 //　データを加算
@@ -438,7 +440,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 					cv.put( TENPO, "店舗" + ( rnd.nextInt( 100 ) + 1 ) );
                     //  交換率
                     cv.put( EXCHANGE_BALL, 3.57 );
-                    cv.put( EXCHANGE_MEDAL, 18.9 );
+                    cv.put( EXCHANGE_MEDAL, 5.6 );
 
                     // 台番
                     cv.put( NUMBER, rnd.nextInt( 9999 ) + 1 );

@@ -96,7 +96,7 @@
 
         <EditText
             android:id="@+id/add_dialog_edit_02"
-            android:text="20.00"
+            android:text="5.0"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -108,7 +108,7 @@
             android:gravity="end|center"
             android:textColor="@color/black"
             android:inputType="number"
-            android:maxLength="5"
+            android:maxLength="3"
             android:textSize="@dimen/add_text_size" />
 
         <TextView
