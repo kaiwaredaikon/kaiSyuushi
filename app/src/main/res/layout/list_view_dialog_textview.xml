@@ -5,6 +5,7 @@
     android:gravity="center"
     android:orientation="horizontal"
     android:id="@+id/list_view_dialog_layout_01"
+    android:background="@color/white"
     >
 
     <TextView

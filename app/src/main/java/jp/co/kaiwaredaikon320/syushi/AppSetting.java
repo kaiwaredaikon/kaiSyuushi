@@ -198,6 +198,4 @@ public class AppSetting
         return bd1.intValue();
 	}
 */
-
 }
-

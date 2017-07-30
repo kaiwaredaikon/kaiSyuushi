@@ -1174,5 +1174,4 @@ public class MyAsyncTask extends AsyncTask<Integer, Integer, Integer> implements
 		retStr = retStr.replace("%", "$%");
 		return retStr;
 	}
-
 }

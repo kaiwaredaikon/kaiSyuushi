@@ -181,6 +181,4 @@ public class MyPreferenceFragment extends PreferenceFragment implements SharedPr
         prefEditor.commit();
 
     }
-
-
 }

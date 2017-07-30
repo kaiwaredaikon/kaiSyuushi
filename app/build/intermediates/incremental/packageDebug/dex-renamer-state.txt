@@ -1,4 +1,4 @@
-#Sun Jun 25 04:32:26 JST 2017
+#Mon Jul 31 02:12:21 JST 2017
 base.0=/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
 renamed.0=classes.dex
 file.0=/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex

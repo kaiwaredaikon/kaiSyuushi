@@ -691,6 +691,3 @@ public class ListViewActivity extends Activity {
         return false;
     }
 }
-
-
-

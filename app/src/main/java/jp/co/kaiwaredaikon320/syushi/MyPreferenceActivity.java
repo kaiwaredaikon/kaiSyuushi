@@ -36,8 +36,4 @@ public class MyPreferenceActivity extends Activity{
 	    }
 		return super.onOptionsItemSelected( item );
 	}
-
-
-
-
 }
