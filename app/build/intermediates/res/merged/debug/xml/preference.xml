@@ -16,29 +16,8 @@
            android:entries="@array/entries_tani"
            android:entryValues="@array/entryvalues_tani"
            android:dialogTitle="@string/pref_title_01"
-		   android:defaultValue="1000"
+		   android:defaultValue="500"
         />
-
-		<ListPreference
-           android:key="@string/pref_key_seekbar"
-           android:title="@string/pref_title_02"
-           android:summary=""
-           android:entries="@array/entries_seekbar"
-           android:entryValues="@array/entryvalues_seekbar"
-           android:dialogTitle="@string/pref_title_02"
-		   android:defaultValue="1000"
-        />
-
-		<ListPreference
-           android:key="@string/pref_key_seekbar_max"
-           android:title="@string/pref_title_05"
-           android:summary=""
-           android:entries="@array/entries_seekbar_max"
-           android:entryValues="@array/entryvalues_seekbar_max"
-           android:dialogTitle="@string/pref_title_05"
-		   android:defaultValue="50000"
-        />
-
 	</PreferenceCategory>
 
 
