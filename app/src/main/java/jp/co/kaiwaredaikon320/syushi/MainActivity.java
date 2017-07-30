@@ -69,6 +69,12 @@ public class MainActivity extends Activity implements GestureDetector.OnGestureL
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
+        // プリファレンスの情報を取得する
+        loadPreference();
+
+		MyPrefSetting.setDataRestorationFlg(false);
+
         Trace.d( "onCreate 1 ");
 
 		setContentView(R.layout.activity_main);
@@ -132,10 +138,6 @@ public class MainActivity extends Activity implements GestureDetector.OnGestureL
 
 		// 年間収支
 		drawYearTotal(yearBak);
-
-		pref = PreferenceManager.getDefaultSharedPreferences(this);
-		// プリファレンスの情報を取得する
-		loadPreference();
 
 		// GestureDetectorインスタンス作成
 		this.detector = new GestureDetector(this, this);
@@ -308,7 +310,7 @@ public class MainActivity extends Activity implements GestureDetector.OnGestureL
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 			alertDialogBuilder.setTitle("確認");
-			alertDialogBuilder.setMessage("収太郎2を終了しますか？");
+			alertDialogBuilder.setMessage("収太郎を終了しますか？");
 
 			alertDialogBuilder.setPositiveButton("はい", new DialogInterface.OnClickListener() {
 				@Override
@@ -321,6 +323,7 @@ public class MainActivity extends Activity implements GestureDetector.OnGestureL
 				public void onClick(DialogInterface dialog, int which) {
 				}
 			});
+
 
 			alertDialogBuilder.setCancelable(true);
 			AlertDialog alertDialog = alertDialogBuilder.create();
@@ -385,6 +388,10 @@ public class MainActivity extends Activity implements GestureDetector.OnGestureL
 		switch (requestCode) {
 		case MY_PREFERENCE_OPTION:
 			Trace.d("MY_PREFERENCE_OPTION");
+
+            // MyPrefSettingの中身を更新する
+            loadPreference();
+
 			// データの更新
 			// updata( );
 			// 復元した場合は再描画要求
@@ -633,13 +640,9 @@ public class MainActivity extends Activity implements GestureDetector.OnGestureL
 		data = Integer.parseInt(data_seekbar_max);
 		MyPrefSetting.setSeekBarMax(data);
 
-		// データ復元 アプリ起動時に必ず初期化しておく
-		MyPrefSetting.setDataRestorationFlg(false);
-
 		Trace.d("aaaaaaaaaaaaaaaaaaaaa 単位 = " + MyPrefSetting.getRate());
 		Trace.d("aaaaaaaaaaaaaaaaaaaaa seekbar = " + MyPrefSetting.getSeekBarRate());
 		Trace.d("aaaaaaaaaaaaaaaaaaaaa max = " + MyPrefSetting.getSeekBarMax());
-		Trace.d("aaaaaaaaaaaaaaaaaaaaa RestorationFlg = " + MyPrefSetting.getDataRestorationFlg());
 	}
 
 

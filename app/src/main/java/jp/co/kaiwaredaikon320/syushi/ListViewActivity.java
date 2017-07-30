@@ -549,12 +549,15 @@ public class ListViewActivity extends Activity {
 
             // スロ
             if (invPtn == 2) {
-                calc = exchangeSlot * exInvestment;
+//                calc = exchangeSlot * exInvestment;
+                calc = (exInvestment / exchangeSlot) *100;
             }
 
             // 切り上げ前
             Trace.d("calc = " + calc);
 
+            exInvestment = AppSetting.getBigDecimalInt(calc,0, BigDecimal.ROUND_UP);
+/*
             // ROUND_HALF_UP→四捨五入　ROUND_DOWN→切り捨て　ROUND_UP→切り上げ
             bd = new BigDecimal(calc);
             BigDecimal bd1 = bd.setScale(0, BigDecimal.ROUND_UP);  //小数第0位
@@ -563,6 +566,7 @@ public class ListViewActivity extends Activity {
             Trace.d("calc = " + bd1.doubleValue());
 
             exInvestment = bd1.intValue();
+*/
         }
 
         // 回収
@@ -575,11 +579,14 @@ public class ListViewActivity extends Activity {
 
             // スロ
             if (recPtn == 2) {
-                calc = exchangeSlot * exRecovery;
+//                calc = exchangeSlot * exRecovery;
+                calc = (exRecovery / exchangeSlot) *100;
             }
 
             // 切り上げ前
             Trace.d("calc = " + calc);
+            exRecovery = AppSetting.getBigDecimalInt(calc,0, BigDecimal.ROUND_UP);
+/*
 
             bd = new BigDecimal(calc);
             BigDecimal bd1 = bd.setScale(0, BigDecimal.ROUND_UP);  //小数第0位
@@ -587,6 +594,8 @@ public class ListViewActivity extends Activity {
             // 切り上げ後
             Trace.d("calc = " + bd1.doubleValue());
             exRecovery = bd1.intValue();
+*/
+
         }
         return (exRecovery - exInvestment);
     }
