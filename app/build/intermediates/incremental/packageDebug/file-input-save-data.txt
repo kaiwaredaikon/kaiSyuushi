@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Mon Jul 31 02:12:22 JST 2017
+#Mon Jul 31 02:30:33 JST 2017
 5.base=/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/resources-debug.ap_
 42.base=/Users/kaiware/AndroidStudioProjects/kaiSyuushi/app/build/intermediates/res/resources-debug.ap_
 32.set=ANDROID_RESOURCE

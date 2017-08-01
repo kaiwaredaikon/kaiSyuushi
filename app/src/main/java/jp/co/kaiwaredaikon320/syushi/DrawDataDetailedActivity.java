@@ -855,4 +855,5 @@ public class DrawDataDetailedActivity extends Activity {
     public void onClickDrawDataMenu(View view) {
         Trace.d("itemptn = " + itemptn);
     }
+
 }
