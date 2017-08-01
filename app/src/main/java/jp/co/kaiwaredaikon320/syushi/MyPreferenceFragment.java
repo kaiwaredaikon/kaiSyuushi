@@ -29,6 +29,8 @@ public class MyPreferenceFragment extends PreferenceFragment implements SharedPr
 
     CharSequence keyId_destination;
 	CharSequence keyId_destination2;
+	CharSequence keyId_destination3;
+
 
     @SuppressLint("NewApi")
 	@Override
