@@ -202,7 +202,7 @@ public class AddListActivity extends Activity implements TextWatcher{
 
         // 交換率
         exchangeBall = 4.00;     // 玉
-        exchangeSlot = 20.00;    // スロット
+        exchangeSlot = 5.0;    // スロット
 
         // 台番
         buttonNumber = (Button) findViewById(R.id.add_edit_number_01);
@@ -929,7 +929,9 @@ public class AddListActivity extends Activity implements TextWatcher{
 
             // スロ
             if(investmentExchangePtn==2){
-                calc = exchangeSlot * Integer.parseInt( buttonInvestmentId.getText().toString());
+//                calc = exchangeSlot * Integer.parseInt( buttonInvestmentId.getText().toString());
+                calc = (Integer.parseInt( buttonInvestmentId.getText().toString()) / exchangeSlot) *100;
+
                 unit = "円("+exchangeSlot + "枚)";
             }
 
@@ -964,7 +966,8 @@ public class AddListActivity extends Activity implements TextWatcher{
 
             // スロ
             if(recoveryExchangePtn==2){
-                calc = exchangeSlot * Integer.parseInt( buttonRecoveryId.getText().toString());
+//                calc = exchangeSlot * Integer.parseInt( buttonRecoveryId.getText().toString());
+                calc = (Integer.parseInt( buttonRecoveryId.getText().toString()) / exchangeSlot) *100;
                 unit = "円("+exchangeSlot + "枚)";
             }
 

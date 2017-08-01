@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">収太郎</string>
 
     <!-- メニュー -->
@@ -97,11 +96,9 @@
 	<string name="pref_category_02">バックアップ設定</string>
 
     <!-- preference title -->
-    <string name="pref_title_01">＋－単位</string>
-    <string name="pref_title_02">スライダー単位</string>
+    <string name="pref_title_01">最小交換単位</string>
     <string name="pref_title_03">バックアップ</string>
     <string name="pref_title_04">復元</string>
-    <string name="pref_title_05">スライダー最大値</string>
 
     <string name="pref_title_06">バックアップ作成先</string>
 

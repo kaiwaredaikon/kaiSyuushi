@@ -22,7 +22,6 @@ public class MyPreferenceActivity extends Activity{
         // Upアイコンの表示
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-
     }
 
 	@Override
@@ -37,8 +36,4 @@ public class MyPreferenceActivity extends Activity{
 	    }
 		return super.onOptionsItemSelected( item );
 	}
-
-
-
-
 }

@@ -1,7 +1,5 @@
 package jp.co.kaiwaredaikon320.syushi;
 
-import java.io.File;
-
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -10,6 +8,8 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+
+import java.io.File;
 
 
 /**
@@ -23,13 +23,9 @@ public class MyPreferenceFragment extends PreferenceFragment implements SharedPr
 
     //
     Preference pref_tani;
-	Preference pref_seekbar;
-	Preference pref_seekbar_max;
 
     // key取得
     CharSequence keyId_tani;
-    CharSequence keyId_seekbar;
-    CharSequence keyId_seekbar_max;
 
     CharSequence keyId_destination;
 
@@ -44,19 +40,13 @@ public class MyPreferenceFragment extends PreferenceFragment implements SharedPr
 
         // key取得
         keyId_tani = getText(R.string.pref_key_tani);
-        keyId_seekbar = getText(R.string.pref_key_seekbar);
-        keyId_seekbar_max = getText(R.string.pref_key_seekbar_max);
         keyId_destination = getText(R.string.pref_key_destination );
 
         // findPreference
         pref_tani = findPreference(keyId_tani);
-        pref_seekbar = findPreference(keyId_seekbar);
-        pref_seekbar_max = findPreference(keyId_seekbar_max);
 
         // サマリー・プリファレンスの更新
         setSummaryAndPreference( keyId_tani, 0 );
-        setSummaryAndPreference( keyId_seekbar, 1 );
-        setSummaryAndPreference( keyId_seekbar_max, 2 );
 
 	//　バックアップパス変更
 		CharSequence[] entries;
@@ -141,19 +131,11 @@ public class MyPreferenceFragment extends PreferenceFragment implements SharedPr
 
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,String key) {
-		// TODO 自動生成されたメソッド・スタブ
 		Trace.d(" onSharedPreferenceChanged key = " + key );
 		// プリファレンスに保存されたデータが更新されたら、値をSummaryに反映する
 		if( key.equals( keyId_tani ) ){
 			setSummaryAndPreference( keyId_tani, 0 );
 		}
-		else if( key.equals( keyId_seekbar ) ){
-			setSummaryAndPreference( keyId_seekbar, 1 );
-		}
-		else if( key.equals( keyId_seekbar_max ) ){
-			setSummaryAndPreference( keyId_seekbar_max, 2 );
-		}
-
 		else if( key.equals( keyId_destination ) ){
 			setSummaryAndPreference( keyId_destination, 3 );
 		}
@@ -180,6 +162,7 @@ public class MyPreferenceFragment extends PreferenceFragment implements SharedPr
         switch(type){
         	case 0:
                 MyPrefSetting.setRate( data );
+				MyPrefSetting.setDataRestorationFlg( true );
         		break;
         	case 1:
                 MyPrefSetting.setSeekBarRate( data );
@@ -198,6 +181,4 @@ public class MyPreferenceFragment extends PreferenceFragment implements SharedPr
         prefEditor.commit();
 
     }
-
-
 }
