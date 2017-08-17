@@ -3,7 +3,10 @@ package jp.co.kaiwaredaikon320.syushi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +14,10 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
 
@@ -20,7 +26,8 @@ import java.util.List;
 //import android.view.View.OnClickListener;
 
 
-public class ListViewDialog extends Activity{
+//public class ListViewDialog extends Activity{
+public class ListViewDialog extends Activity implements SearchView.OnQueryTextListener {
 
     // ID
     private final int LIST_ID_TENPO = 0;
@@ -38,6 +45,8 @@ public class ListViewDialog extends Activity{
     ArrayList<Item> itemList_kisyu;
     ArrayList<Item> itemList_event;
 
+    private Ngram ngram;
+
     // コンストラクタ
 	public ListViewDialog( Context context ){
 		// contextの引継ぎ
@@ -46,6 +55,8 @@ public class ListViewDialog extends Activity{
 		itemList_tenpo = new ArrayList<Item>();
 		itemList_kisyu = new ArrayList<Item>();
         itemList_event = new ArrayList<Item>();
+
+        ngram = new Ngram();
 	}
 
 	/**
@@ -113,8 +124,6 @@ public class ListViewDialog extends Activity{
 	**/
 	public void createListViewDialog( int type, String label, final TextView txt, int width, int height ){
 
-    Trace.d( "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
-
 	    final ArrayList<Item> tmpList;
 
 		switch( type ){
@@ -133,14 +142,39 @@ public class ListViewDialog extends Activity{
                 break;
 		}
 
-		adapter = new CustomAdapter(con.getApplicationContext(), 0, tmpList );
-		listView = new ListView( con.getApplicationContext() );
+
+        adapter = new CustomAdapter(con.getApplicationContext(), 0, tmpList );
+//		listView = new ListView( con.getApplicationContext() );
+
+        LayoutInflater inflater = (LayoutInflater) con.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+        View view = inflater.inflate(R.layout.layout_search_dialog, null);
+		listView = (ListView) view.findViewById(R.id.listView1);
+
+        SearchView search = (SearchView) view.findViewById(R.id.searchView1);
+
+        // SearchViewの初期表示状態を設定
+        search.setIconifiedByDefault(false);
+        // SearchViewにOnQueryTextListenerを設定
+        search.setOnQueryTextListener(this);
+        // SearchViewのSubmitボタンを使用不可にする
+        search.setSubmitButtonEnabled(true);
+        // SearchViewに何も入力していない時のテキストを設定
+        search.setQueryHint("検索文字を入力して下さい。");
+        // SearchView 文字色の指定
+        LinearLayout linearLayout1 = (LinearLayout) search.getChildAt(0);
+        LinearLayout linearLayout2 = (LinearLayout) linearLayout1.getChildAt(2);
+        LinearLayout linearLayout3 = (LinearLayout) linearLayout2.getChildAt(1);
+        AutoCompleteTextView autoComplete = (AutoCompleteTextView) linearLayout3.getChildAt(0);
+        autoComplete.setTextColor(Color.rgb(0xff, 0xff, 0xff));
+
+/*
+
+*/
 
         // 線の色を変更する
         ColorDrawable separate_line_color = new ColorDrawable( con.getApplicationContext().getResources().getColor(R.color.black) );
         listView.setDivider(separate_line_color);
         listView.setDividerHeight(2);
-
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -157,9 +191,14 @@ public class ListViewDialog extends Activity{
 
 		.setTitle(label)
         .setNegativeButton( R.string.button_cancel, null)
-		.setView(listView).create();
+//		.setView(listView).create();
+		.setView(view).create();
 
 		dialog.show();
+
+
+
+
 
         // listViewのサイズを変更する
         WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
@@ -167,6 +206,96 @@ public class ListViewDialog extends Activity{
         lp.height = height;
         dialog.getWindow().setAttributes(lp);
 	}
+
+
+
+    public void createListViewDialog2(SQLiteDatabase db, int type, String label, final TextView txt, int width, int height ){
+
+        final ArrayList<Item> tmpList;
+
+        switch( type ){
+            // 店舗(0)
+            case LIST_ID_TENPO:
+                tmpList = itemList_tenpo;
+                break;
+            // 機種(1)
+            case LIST_ID_KISYU:
+                tmpList = itemList_kisyu;
+                break;
+            // 機種(2)
+//            case LIST_ID_EVENT:
+            default:
+                tmpList = itemList_event;
+                break;
+        }
+
+
+
+        adapter = new CustomAdapter(con.getApplicationContext(), 0, tmpList );
+//		listView = new ListView( con.getApplicationContext() );
+
+        LayoutInflater inflater = (LayoutInflater) con.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+        View view = inflater.inflate(R.layout.layout_search_dialog, null);
+        listView = (ListView) view.findViewById(R.id.listView1);
+
+        SearchView search = (SearchView) view.findViewById(R.id.searchView1);
+
+        // SearchViewの初期表示状態を設定
+        search.setIconifiedByDefault(false);
+        // SearchViewにOnQueryTextListenerを設定
+        search.setOnQueryTextListener(this);
+        // SearchViewのSubmitボタンを使用不可にする
+        search.setSubmitButtonEnabled(true);
+        // SearchViewに何も入力していない時のテキストを設定
+        search.setQueryHint("検索文字を入力して下さい。");
+        // SearchView 文字色の指定
+        LinearLayout linearLayout1 = (LinearLayout) search.getChildAt(0);
+        LinearLayout linearLayout2 = (LinearLayout) linearLayout1.getChildAt(2);
+        LinearLayout linearLayout3 = (LinearLayout) linearLayout2.getChildAt(1);
+        AutoCompleteTextView autoComplete = (AutoCompleteTextView) linearLayout3.getChildAt(0);
+        autoComplete.setTextColor(Color.rgb(0xff, 0xff, 0xff));
+
+/*
+
+*/
+
+        // 線の色を変更する
+        ColorDrawable separate_line_color = new ColorDrawable( con.getApplicationContext().getResources().getColor(R.color.black) );
+        listView.setDivider(separate_line_color);
+        listView.setDividerHeight(2);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Item get = tmpList.get(position);
+//        		txt.setText( get.getStringItem());
+                txt.setText( get.getStringItem(), BufferType.NORMAL );
+                // ダイアログ終了
+                dialog.dismiss();
+            }
+        });
+// 20170615 テーマの指定なし　list_view_dialog_textview.xml　でカラー指定
+//		dialog = new AlertDialog.Builder( con, R.style.ListViewDialogStyle )
+        dialog = new AlertDialog.Builder( con )
+
+                .setTitle(label)
+                .setNegativeButton( R.string.button_cancel, null)
+//		.setView(listView).create();
+                .setView(view).create();
+
+        dialog.show();
+
+
+
+
+
+        // listViewのサイズを変更する
+        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+        lp.width  = width;
+        lp.height = height;
+        dialog.getWindow().setAttributes(lp);
+    }
+
+
 
     /**
         店舗リストをダイアログで表示する
@@ -313,4 +442,26 @@ public class ListViewDialog extends Activity{
         }
     }
 
+
+    // SearchViewのSubmitButtonを押下した時に呼ばれるイベント
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    // SearchViewにテキストを入力する度に呼ばれるイベント
+    @Override
+    public boolean onQueryTextChange(String newText) {
+
+        if (TextUtils.isEmpty(newText)) {
+//          listView.clearTextFilter();
+        } else {
+//          listView.setFilterText(newText.toString());
+            itemList_kisyu = itemList_tenpo;
+            adapter = new CustomAdapter(con.getApplicationContext(), 0, itemList_kisyu );
+            listView.setAdapter(adapter);
+        }
+
+        return false;
+    }
 }

@@ -127,6 +127,8 @@ public class AddListActivity extends Activity implements TextWatcher{
     private SQLiteDatabase syushiDatabase = null;
     private Cursor constantsCursor = null;
 
+    private Ngram ngram;
+
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -154,6 +156,8 @@ public class AddListActivity extends Activity implements TextWatcher{
         windowWidth = p.x;
         windowHeight = p.y;
 
+
+        ngram = new Ngram();
         //  titleをセット
 //      setTitle("収支入力");
 
@@ -491,6 +495,36 @@ public class AddListActivity extends Activity implements TextWatcher{
             }
 
 
+/////////////////////////////////////////////////
+// 実験中
+            Trace.d("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh データ取得");
+
+
+            String sql = "SELECT * FROM example_table WHERE _id IN " +
+                    "(SELECT docid FROM fts_example_table WHERE fts_example_table MATCH ?)";
+
+            String str = ngram.getNgramText("L",1);
+
+
+            String[] selectionArgs = { "%" + str + "%" };
+            constantsCursor = syushiDatabase.rawQuery(sql, selectionArgs);
+
+
+            // データを取得
+            // カーソルを一番最初に戻す。
+            if (constantsCursor.moveToFirst()) {
+                do {
+                    //　データベースからデータを取得する
+                    String kisyu = constantsCursor.getString(constantsCursor.getColumnIndex(MySQLiteOpenHelper.KISYU));
+                    Trace.d("kkkkkkkkkkkkkkkkk = " + kisyu );
+
+                } while (constantsCursor.moveToNext());
+            }
+/////////////////////////////////////////////////
+
+
+
+
             // 容量オーバー時の処理
         } catch (SQLiteDiskIOException e) {
             // アラートダイアログの表示
@@ -747,10 +781,9 @@ public class AddListActivity extends Activity implements TextWatcher{
         else{
             cv.put( MySQLiteOpenHelper.KISYU, saveKisyu );  // 機種
             cv.put( MySQLiteOpenHelper.TYPE, pachiType );   // タイプ
-
             syushiDatabase.insert( DB_TBL_KISYU, null, cv );
             Trace.d("機種データの登録");
-        }
+          }
 
         // 引継ぎ用
 //        intent.putExtra("newFlg", exNewFlg);   //　新規作成かどうか
@@ -2064,7 +2097,8 @@ public class AddListActivity extends Activity implements TextWatcher{
             return;
         }
 
-        lvd.createListViewDialog(1, "機種名", buttonKisyuId, (int)(windowWidth*0.8), (int)(windowHeight*0.8) );
+//        lvd.createListViewDialog(1, "機種名", buttonKisyuId, (int)(windowWidth*0.8), (int)(windowHeight*0.8) );
+        lvd.createListViewDialog(1, "機種名2", buttonKisyuId, (int)(windowWidth*0.8), (int)(windowHeight*0.8) );
 //        lvd.createListViewDialog(1, "機種名", this, (int)(windowWidth*0.8), (int)(windowHeight*0.8) );
 
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);

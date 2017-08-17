@@ -48,6 +48,9 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
 	public static final String MEMO		        = "memo";			    // メモ
 
+	private Ngram ngram;
+
+
     // コンストラクタ
     // CREATE用のSQLを取得する
     public MySQLiteOpenHelper(Context mContext ){
@@ -64,6 +67,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     // 新規作成されたDBのインスタンスが付与されるので、テーブルを作成する。
 	@Override
 	public void onCreate(SQLiteDatabase db) {
+		ngram = new Ngram();
 
 		try{
 			DataBackup backup = new DataBackup( db );
@@ -155,6 +159,57 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
             db.execSQL ( sss );
 
             Trace.d( "create tbl kisyu " );
+
+
+//////////////////////////////////////////////////////////
+
+			Trace.d( "create tbl kisyu fts" );
+
+
+/*
+			db.execSQL("CREATE TABLE example_table (_id INTEGER PRIMARY KEY, text TEXT, word TEXT)");
+			db.execSQL("CREATE VIRTUAL TABLE fts_example_table USING fts4 (content='example_table', word)");
+*/
+
+			db.execSQL("CREATE TABLE example_table" + " (_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+					KISYU + " TEXT," +
+					TYPE + " INTEGER," + "word TEXT)");
+			db.execSQL("CREATE VIRTUAL TABLE fts_example_table USING fts4 (content='example_table', word)");
+
+			ContentValues cv2 = new ContentValues();
+
+			// 保存データ
+//			cv2.put( "text", "apple" );     // 日付
+//			cv2.put( "word", ngram.getNgramText("Apple",1) );     // 日付
+
+			cv2.put( KISYU, "apple" );     // 日付
+			cv2.put( TYPE, 0 );     // 日付
+			cv2.put( "word", ngram.getNgramText("Apple",1) );     // 日付
+
+
+			db.insert( "example_table", null, cv2 );
+			db.execSQL("INSERT INTO fts_example_table (docid, word) SELECT _id, word FROM example_table");
+
+			cv2.clear();
+//			cv2.put( "text", "car apple" );     // 日付
+//			cv2.put( "word", ngram.getNgramText("Car Apple",1) );     // 日付
+
+			cv2.put( KISYU, "car apple" );     // 日付
+			cv2.put( TYPE, 0 );     // 日付
+			cv2.put( "word", ngram.getNgramText("Car Apple",1) );     // 日付
+			db.insert( "example_table", null, cv2 );
+
+/*
+			db.execSQL("INSERT INTO example_table (text, word) VALUES (" + "apple" + "," + ngram.getNgramText("apple",2) +")");
+			db.execSQL("INSERT INTO example_table (text, word) VALUES (" + "car" + "," + ngram.getNgramText("car",2) +")");
+			db.execSQL("INSERT INTO example_table (text, word) VALUES (" + "book" + "," + ngram.getNgramText("book",2) +")");
+*/
+			db.execSQL("INSERT INTO fts_example_table (docid, word) SELECT _id, word FROM example_table");
+
+
+
+//////////////////////////////////////////////////////////
+
 
 			// データベース保存用フォルダを作成する
 			boolean bbb = backup.makeSdcardSaveFolder( );

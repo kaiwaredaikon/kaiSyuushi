@@ -7,7 +7,6 @@
     android:id="@+id/list_view_dialog_layout_01"
     android:background="@color/white"
     >
-
     <TextView
         android:id="@+id/list_view_dialog_textview"
         android:layout_width="wrap_content"
