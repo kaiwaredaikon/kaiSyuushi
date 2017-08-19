@@ -27,16 +27,15 @@ public class ListViewDialog extends Activity{
     private final int LIST_ID_KISYU = 1;
     private final int LIST_ID_EVENT = 2;
 
-
     Context con;
 
     CustomAdapter adapter;
     ListView listView;
 	AlertDialog dialog;
 
-    ArrayList<Item> itemList_tenpo;
-    ArrayList<Item> itemList_kisyu;
-    ArrayList<Item> itemList_event;
+    public ArrayList<Item> itemList_tenpo;
+    public ArrayList<Item> itemList_kisyu;
+    public ArrayList<Item> itemList_event;
 
     // コンストラクタ
 	public ListViewDialog( Context context ){

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddListActivity">
+    tools:context=".input.AddListActivity">
 
 	<LinearLayout
 	    android:id="@+id/add_list_view_activity"

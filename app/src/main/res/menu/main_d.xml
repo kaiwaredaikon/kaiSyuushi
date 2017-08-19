@@ -20,15 +20,27 @@
 		        android:showAsAction="never"
 		        android:title="@string/action_settings1"/>
 
+			<item
+				android:id="@+id/action_settings5"
+				android:orderInCategory="300"
+				android:showAsAction="never"
+				android:title="@string/action_settings6"/>
+
+			<item
+				android:id="@+id/action_settings6"
+				android:orderInCategory="400"
+				android:showAsAction="never"
+				android:title="@string/action_settings7"/>
+
 		    <item
 		        android:id="@+id/action_settings3"
-		        android:orderInCategory="300"
+		        android:orderInCategory="400"
 		        android:showAsAction="never"
 		        android:title="@string/action_settings3"/>
 
 		    <item
 		        android:id="@+id/action_settings4"
-		        android:orderInCategory="400"
+		        android:orderInCategory="500"
 		        android:showAsAction="never"
 		        android:title="@string/action_settings5"/>
 

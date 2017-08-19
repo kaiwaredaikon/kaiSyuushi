@@ -8,6 +8,9 @@
 	<string name="action_settings3">オプション</string>
 	<string name="action_settings4">検索</string>
 	<string name="action_settings5">ヘルプ</string>
+	<string name="action_settings6">機種編集</string>
+	<string name="action_settings7">店舗編集</string>
+
 
     <string name="guidance_year">年</string>
     <string name="guidance_month"> 月</string>
