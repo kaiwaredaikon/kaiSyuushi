@@ -18,7 +18,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     static final String DB_NAME             = "syushi.db";  // DB名
     public static final String DB_TBL_CONSTANTS    = "constants";  // DBのテーブル名(収支)
 	public static final String DB_TBL_TENPO        = "tbl_tenpo";  // DBのテーブル名(店舗)
-    static final String DB_TBL_KISYU        = "tbl_kisyu";  // DBのテーブル名(機種)
+    public static final String  DB_TBL_KISYU        = "tbl_kisyu";  // DBのテーブル名(機種)
 
 
 

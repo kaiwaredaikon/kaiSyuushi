@@ -49,7 +49,7 @@ public class ListViewItem{
     protected void setID( long id ) {
         mID = id;
     }
-    protected long getID() {
+    public long getID() {
         return mID;
     }
 

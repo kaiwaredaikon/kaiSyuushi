@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import jp.co.kaiwaredaikon320.syushi.input.ListViewActivity;
 import jp.co.kaiwaredaikon320.syushi.view.calendar.CalendarSelectionEvent;
 import jp.co.kaiwaredaikon320.syushi.view.calendar.CalendarView;
 import jp.co.kaiwaredaikon320.syushi.view.calendar.DateInfo;
@@ -214,6 +215,16 @@ public class MainActivity extends Activity implements GestureDetector.OnGestureL
 		if (id == R.id.action_settings4) {
 			Intent intent4 = new android.content.Intent(this, WebviewActivity.class);
 			startActivityForResult(intent4, WEB_VIEW_ACTIVITY);
+			return true;
+		}
+
+		// 機種編集
+		if (id == R.id.action_settings5) {
+			return true;
+		}
+
+		// 店舗編集
+		if (id == R.id.action_settings6) {
 			return true;
 		}
 

@@ -42,7 +42,7 @@
 		<!-- 収支表示用のリストビュー -->
         <activity
             android:theme="@android:style/Theme.NoTitleBar"
-            android:name=".ListViewActivity"
+            android:name=".input.ListViewActivity"
             android:label="日付"
 	        android:screenOrientation="portrait"
 	        android:configChanges="orientation|keyboardHidden">
@@ -52,7 +52,7 @@
 		<!-- 収支入力用アクティビティ -->
         <activity
 	        android:theme="@android:style/Theme.NoTitleBar"
-            android:name=".AddListActivity"
+            android:name=".input.AddListActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
 	        android:screenOrientation="portrait"
 	        android:configChanges="orientation|keyboardHidden"
